@@ -1,16 +1,18 @@
 import mongoose from 'mongoose';
-import { User } from './user';
+import { UserSchemaType } from './user';
 
-export type ExercisesType = {
+export type ExerciseSchemaType = {
+  id: string;
   name: string;
   repetitions: number;
   sets: number;
 };
 
-export type RoutineType = {
+export type RoutineSchemaType = {
+  id: string;
   name: string;
-  exercises: ExercisesType[];
-  user: User;
+  exercises: ExerciseSchemaType[];
+  user: UserSchemaType;
 };
 
 const routineSchema = new mongoose.Schema({
@@ -19,6 +21,9 @@ const routineSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 });
 
-const RoutineModel = mongoose.model<RoutineType>('Routine', routineSchema);
+const RoutineModel = mongoose.model<RoutineSchemaType>(
+  'Routine',
+  routineSchema
+);
 
 module.exports = RoutineModel;
