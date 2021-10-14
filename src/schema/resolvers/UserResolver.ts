@@ -1,60 +1,33 @@
 import 'reflect-metadata';
-import {
-  Arg,
-  ObjectType,
-  Mutation,
-  Query,
-  Resolver,
-  Field,
-  Int
-} from 'type-graphql';
+import { Resolver, Mutation, Query, Arg } from 'type-graphql';
 import UserModel from '../../models/user';
 const bcryptjs = require('bcryptjs');
-
-@ObjectType()
-export class User {
-  @Field({ description: 'The username of the user' })
-  username: string;
-
-  @Field()
-  name: string;
-
-  @Field()
-  password: string;
-
-  @Field(() => [Routine], { nullable: true })
-  routines?: Routine[];
-}
-
-@ObjectType()
-export class Routine {
-  @Field()
-  name: string;
-
-  @Field(() => [Exercise])
-  exercises: Exercise[];
-
-  @Field(() => User)
-  user: User;
-}
-
-@ObjectType()
-export class Exercise {
-  @Field()
-  name: string;
-
-  @Field(() => Int)
-  repetitions: number;
-
-  @Field(() => Int)
-  sets: number;
-}
+import { User } from '../types/User';
 
 @Resolver()
 export class UserResolver {
   @Query(() => String)
   hello() {
     return 'Hello world!';
+  }
+
+  @Query(() => [User])
+  async getUsers() {
+    let users;
+    try {
+      users = await UserModel.find({});
+    } catch (error) {
+      console.log(error.message);
+    }
+
+    return users;
+  }
+
+  @Query(() => User)
+  async findUserByUsername(@Arg('username') username: string) {
+    const user = await UserModel.findOne({ username });
+    if (!user) throw new Error('User not found');
+    return user;
   }
 
   @Mutation(() => User)
@@ -76,6 +49,8 @@ export class UserResolver {
     });
 
     const savedUser = await user.save();
+
+    if (!savedUser) throw new Error('User could not been saved...');
 
     return savedUser;
   }
