@@ -1,14 +1,15 @@
 import mongoose from 'mongoose';
-import { RoutineType } from './routine';
+import { RoutineSchemaType } from './routine';
 
-export type User = {
+export type UserSchemaType = {
+  id: string;
   username: string;
   name: string;
   password: string;
-  routines?: RoutineType[];
+  routines?: RoutineSchemaType[];
 };
 
-const userSchema = new mongoose.Schema<User>({
+const userSchema = new mongoose.Schema<UserSchemaType>({
   username: { type: String, required: true },
   name: { type: String, required: true },
   password: { type: String, required: true },
@@ -20,6 +21,6 @@ const userSchema = new mongoose.Schema<User>({
   ]
 });
 
-const UserModel = mongoose.model<User>('User', userSchema);
+const UserModel = mongoose.model<UserSchemaType>('User', userSchema);
 
 export default UserModel;
