@@ -1,7 +1,6 @@
 import 'reflect-metadata';
 import { Field, ObjectType, ID } from 'type-graphql';
 import { Routine } from './Routine';
-
 @ObjectType()
 export class User {
   @Field(() => ID)
@@ -11,7 +10,7 @@ export class User {
   username: string;
 
   @Field()
-  name: string;
+  email: string;
 
   @Field(() => [Routine], { nullable: true })
   routines?: Routine[];
