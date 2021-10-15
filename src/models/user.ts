@@ -1,26 +1,27 @@
-import mongoose from 'mongoose';
-import { RoutineSchemaType } from './routine';
+import mongoose, { ObjectId } from 'mongoose';
+import { RoutineInterface } from './routine';
 
-export type UserSchemaType = {
-  id: string;
+export interface UserInterface {
+  id: ObjectId;
   username: string;
-  name: string;
+  email: string;
   password: string;
-  routines?: RoutineSchemaType[];
-};
+  routines?: RoutineInterface[];
+}
 
-const userSchema = new mongoose.Schema<UserSchemaType>({
+const userSchema = new mongoose.Schema<UserInterface>({
   username: { type: String, required: true },
-  name: { type: String, required: true },
+  email: { type: String, required: true },
   password: { type: String, required: true },
   routines: [
     {
       type: mongoose.Schema.Types.ObjectId,
+      required: false,
       ref: 'Routine'
     }
   ]
 });
 
-const UserModel = mongoose.model<UserSchemaType>('User', userSchema);
+const UserModel = mongoose.model<UserInterface>('User', userSchema);
 
 export default UserModel;
