@@ -1,24 +1,16 @@
 import 'reflect-metadata';
 import { Resolver, Mutation, Query, Arg } from 'type-graphql';
 import UserModel from '../../models/user';
-const bcryptjs = require('bcryptjs');
+import bcryptjs from 'bcryptjs';
 import { User } from '../types/User';
 
 @Resolver()
 export class UserResolver {
-  @Query(() => String)
-  hello() {
-    return 'Hello world!';
-  }
-
   @Query(() => [User])
   async getUsers() {
-    let users;
-    try {
-      users = await UserModel.find({});
-    } catch (error) {
-      console.log(error.message);
-    }
+    const users = await UserModel.find({});
+
+    if (!users) throw new Error('Error while fetching users');
 
     return users;
   }
@@ -33,17 +25,15 @@ export class UserResolver {
   @Mutation(() => User)
   async createUser(
     @Arg('username') username: string,
-    @Arg('name') name: string,
+    @Arg('email') email: string,
     @Arg('password') password: string
   ): Promise<User> {
-    // const saltRounds = 12;
-    // const hashedPassword = await bcryptjs(password, saltRounds);
     const salt = bcryptjs.genSaltSync(10);
     const hashedPassword = bcryptjs.hashSync(password, salt);
 
     const user = new UserModel({
       username,
-      name,
+      email,
       password: hashedPassword,
       routines: []
     });
