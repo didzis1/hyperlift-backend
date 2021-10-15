@@ -3,7 +3,7 @@ import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
 import express from 'express';
 import mongoose from 'mongoose';
 import http from 'http';
-import { createSchema } from './schema';
+import createSchema from './schema';
 require('dotenv').config();
 
 const startApolloServer = async () => {
