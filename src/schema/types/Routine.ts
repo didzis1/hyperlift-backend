@@ -1,32 +1,27 @@
 import 'reflect-metadata';
-import { Field, ID, Int, ObjectType } from 'type-graphql';
-import { User } from './User';
-
+import { Field, ObjectType, Int, ID } from 'type-graphql';
 @ObjectType()
 export class Routine {
   @Field(() => ID)
   id: string;
 
   @Field()
-  name: string;
+  title: string;
 
-  @Field(() => [Exercise])
-  exercises: Exercise[];
-
-  @Field(() => User)
-  user: User;
+  @Field(() => [Workout], { nullable: true })
+  workouts?: Workout[];
 }
 
 @ObjectType()
-export class Exercise {
+export class Workout {
   @Field(() => ID)
   id: string;
 
   @Field()
-  name: string;
+  exercise: string;
 
   @Field(() => Int)
-  repetitions: number;
+  reps: number;
 
   @Field(() => Int)
   sets: number;
