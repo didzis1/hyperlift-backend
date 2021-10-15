@@ -1,9 +1,11 @@
 import 'reflect-metadata';
-import { UserResolver } from './resolvers/UserResolver';
 import { buildSchema } from 'type-graphql';
+import { resolvers } from './resolvers';
 
-export const createSchema = () => {
+const createSchema = () => {
   return buildSchema({
-    resolvers: [UserResolver]
+    resolvers
   });
 };
+
+export default createSchema;
