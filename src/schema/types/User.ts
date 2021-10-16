@@ -6,8 +6,11 @@ export class User {
   @Field(() => ID)
   id: string;
 
-  @Field({ description: 'The username of the user' })
-  username: string;
+  @Field()
+  firstName: string;
+
+  @Field()
+  lastName: string;
 
   @Field()
   email: string;

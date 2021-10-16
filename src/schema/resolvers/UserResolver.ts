@@ -6,8 +6,8 @@ import { User } from '../types/User';
 
 @Resolver()
 export class UserResolver {
-  @Query(() => [User])
-  async getUsers() {
+  @Query(() => [User], { description: 'Fetch all users from the database' })
+  async getUsers(): Promise<User[]> {
     const users = await UserModel.find({});
 
     if (!users) throw new Error('Error while fetching users');
@@ -16,15 +16,16 @@ export class UserResolver {
   }
 
   @Query(() => User)
-  async findUserByUsername(@Arg('username') username: string) {
-    const user = await UserModel.findOne({ username });
+  async findUserByUsername(@Arg('email') email: string) {
+    const user = await UserModel.findOne({ email });
     if (!user) throw new Error('User not found');
     return user;
   }
 
   @Mutation(() => User)
   async createUser(
-    @Arg('username') username: string,
+    @Arg('firstName') firstName: string,
+    @Arg('lastName') lastName: string,
     @Arg('email') email: string,
     @Arg('password') password: string
   ): Promise<User> {
@@ -32,7 +33,8 @@ export class UserResolver {
     const hashedPassword = bcryptjs.hashSync(password, salt);
 
     const user = new UserModel({
-      username,
+      firstName,
+      lastName,
       email,
       password: hashedPassword,
       routines: []
