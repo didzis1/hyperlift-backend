@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Field, ObjectType, Int, ID } from 'type-graphql';
+import { Field, ObjectType, ID, InputType } from 'type-graphql';
 @ObjectType()
 export class Routine {
   @Field(() => ID)
@@ -8,8 +8,11 @@ export class Routine {
   @Field()
   title: string;
 
+  @Field({ nullable: true })
+  description?: string;
+
   @Field(() => [Workout], { nullable: true })
-  workouts?: Workout[];
+  workouts: Workout[];
 }
 
 @ObjectType()
@@ -18,11 +21,38 @@ export class Workout {
   id: string;
 
   @Field()
-  exercise: string;
+  name: string;
 
-  @Field(() => Int)
-  reps: number;
-
-  @Field(() => Int)
-  sets: number;
+  @Field()
+  exercises: string;
 }
+
+@InputType()
+export class WorkoutInput {
+  @Field(() => ID)
+  id: string;
+
+  @Field()
+  name: string;
+
+  @Field()
+  exercises: string;
+}
+
+// @InputType()
+// export class ExerciseInput implements Partial<WorkoutInput> {
+//   @Field(() => ID)
+//   id: string;
+
+//   @Field()
+//   exercise: string;
+
+//   @Field(() => Int)
+//   reps: number;
+
+//   @Field(() => Int)
+//   sets: number;
+
+//   @Field(() => Int, { nullable: true })
+//   weight?: number;
+// }
