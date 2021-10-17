@@ -3,20 +3,29 @@ import { UserInterface } from './user';
 export interface RoutineInterface {
   id: string;
   title: string;
-  workouts?: WorkoutInterface[];
+  description?: string;
+  workouts: WorkoutInterface[];
   user: UserInterface;
 }
 
 export interface WorkoutInterface {
   id: string;
-  exercise: string;
-  reps: number;
-  sets: number;
+  name: string;
+  exercises: string;
 }
+
+// export interface ExerciseInterface {
+//   id: string;
+//   exercise: string;
+//   reps: number;
+//   sets: number;
+//   weight?: number;
+// }
 
 const routineSchema = new mongoose.Schema<RoutineInterface>({
   title: { type: String, required: true },
-  workouts: { type: Array, required: false },
+  description: { type: String, required: false },
+  workouts: [{ type: Array, required: true }],
   user: {
     type: mongoose.Schema.Types.ObjectId,
     required: true

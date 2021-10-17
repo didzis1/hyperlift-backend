@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { Resolver, Mutation, Query, Arg } from 'type-graphql';
 import UserModel from '../../models/user';
 import bcryptjs from 'bcryptjs';
-import { User } from '../types/User';
+import { NewUserInput, User } from '../types/User';
 
 @Resolver()
 export class UserResolver {
@@ -16,7 +16,7 @@ export class UserResolver {
   }
 
   @Query(() => User)
-  async findUserByUsername(@Arg('email') email: string) {
+  async findUserByEmail(@Arg('email') email: string) {
     const user = await UserModel.findOne({ email });
     if (!user) throw new Error('User not found');
     return user;
@@ -24,10 +24,7 @@ export class UserResolver {
 
   @Mutation(() => User)
   async createUser(
-    @Arg('firstName') firstName: string,
-    @Arg('lastName') lastName: string,
-    @Arg('email') email: string,
-    @Arg('password') password: string
+    @Arg('userInput') { firstName, lastName, email, password }: NewUserInput
   ): Promise<User> {
     const salt = bcryptjs.genSaltSync(10);
     const hashedPassword = bcryptjs.hashSync(password, salt);
@@ -46,4 +43,15 @@ export class UserResolver {
 
     return savedUser;
   }
+
+  // @Mutation(() => User)
+  // async removeUser(@Arg('email') email: string): Promise<boolean> {
+  //   try {
+  //     await UserModel.findOneAndRemove({ email });
+  //   } catch (error) {
+  //     throw new Error('Error while trying to delete the user...');
+  //   }
+
+  //   return true;
+  // }
 }
