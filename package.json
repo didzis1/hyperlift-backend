@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "tsc -w",
-    "dev": "nodemon dist/index.js",
-    "start": "ts-node-dev --respawn src/index.ts",
+    "start:prod": "node dist/index.js",
+    "start": "ts-node-dev --respawn --no-notify src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
