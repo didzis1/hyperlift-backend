@@ -32,7 +32,7 @@ export class RoutineResolver {
     const newRoutine = new RoutineModel({
       title,
       description,
-      workouts: workouts ? workouts : [],
+      workouts,
       user: userId
     });
 

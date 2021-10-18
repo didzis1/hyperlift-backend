@@ -1,37 +1,56 @@
-import mongoose from 'mongoose';
-import { UserInterface } from './user';
-export interface RoutineInterface {
-  id: string;
-  title: string;
+import { prop as Property, getModelForClass, Ref } from '@typegoose/typegoose';
+import { ObjectId } from 'mongoose';
+import { Field, ObjectType, ID, Int } from 'type-graphql';
+import { User } from './user';
+
+@ObjectType()
+export class Routine {
+  @Field(() => ID)
+  id: ObjectId;
+
+  @Field({ nullable: true })
+  @Property({ required: false })
   description?: string;
-  workouts: WorkoutInterface[];
-  user: UserInterface;
+
+  @Field(() => [WorkoutSplit])
+  @Property({ type: () => [WorkoutSplit], default: [] })
+  workouts: WorkoutSplit[];
+
+  @Field(() => User)
+  @Property({ ref: User, required: true })
+  user: Ref<User>;
 }
 
-export interface WorkoutInterface {
-  id: string;
+@ObjectType()
+export class WorkoutSplit {
+  @Field()
+  @Property({ required: true })
   name: string;
-  exercises: string;
+
+  @Field(() => [Exercise])
+  @Property({ type: () => [Exercise], required: true })
+  exercises: Exercise[];
 }
 
-// export interface ExerciseInterface {
-//   id: string;
-//   exercise: string;
-//   reps: number;
-//   sets: number;
-//   weight?: number;
-// }
+@ObjectType()
+export class Exercise {
+  @Field()
+  @Property({ required: true })
+  exerciseName: string;
 
-const routineSchema = new mongoose.Schema<RoutineInterface>({
-  title: { type: String, required: true },
-  description: { type: String, required: false },
-  workouts: [{ type: Array, required: true }],
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true
-  }
-});
+  @Field(() => Int)
+  @Property({ required: true })
+  reps: string;
 
-const RoutineModel = mongoose.model<RoutineInterface>('Routine', routineSchema);
+  @Field(() => Int)
+  @Property({ required: true })
+  sets: number;
+
+  @Field(() => Int, { nullable: true })
+  @Property({ required: false })
+  weight?: number;
+}
+
+const RoutineModel = getModelForClass(Routine);
 
 export default RoutineModel;

@@ -1,29 +1,27 @@
-import mongoose, { ObjectId } from 'mongoose';
-import { RoutineInterface } from './routine';
-
-export interface UserInterface {
+import { prop as Property, getModelForClass } from '@typegoose/typegoose';
+import { ObjectId } from 'mongoose';
+import { Field, ObjectType, ID } from 'type-graphql';
+@ObjectType()
+export class User {
+  @Field(() => ID)
   id: ObjectId;
+
+  @Field()
+  @Property({ required: true })
   firstName: string;
+
+  @Field()
+  @Property({ required: true })
   lastName: string;
+
+  @Field()
+  @Property({ required: true, unique: true })
   email: string;
+
+  @Property({ required: true })
   password: string;
-  routines?: RoutineInterface[];
 }
 
-const userSchema = new mongoose.Schema<UserInterface>({
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  routines: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      required: false,
-      ref: 'Routine'
-    }
-  ]
-});
-
-const UserModel = mongoose.model<UserInterface>('User', userSchema);
+const UserModel = getModelForClass(User);
 
 export default UserModel;
