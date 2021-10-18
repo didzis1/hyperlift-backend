@@ -1,4 +1,4 @@
 import { UserResolver } from './UserResolver';
-// import { RoutineResolver } from './RoutineResolver';
+import { RoutineResolver } from './RoutineResolver';
 
-export const resolvers = [UserResolver] as const;
+export const resolvers = [UserResolver, RoutineResolver] as const;
