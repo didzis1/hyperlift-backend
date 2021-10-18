@@ -40,7 +40,7 @@ export class Exercise {
 
   @Field(() => Int)
   @Property({ required: true })
-  reps: string;
+  reps: number;
 
   @Field(() => Int)
   @Property({ required: true })
