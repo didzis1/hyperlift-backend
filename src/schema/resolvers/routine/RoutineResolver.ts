@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import { Arg, Mutation, Query, Resolver } from 'type-graphql';
-import { Routine } from '../../models/routine';
-import RoutineModel from '../../models/routine';
-import { NewRoutineInput } from './types/RoutineInput';
+import { Routine } from '../../../models/routine';
+import RoutineModel from '../../../models/routine';
+import { NewRoutineInput } from '../inputs/RoutineInput';
 
 @Resolver()
 export class RoutineResolver {
