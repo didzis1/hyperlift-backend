@@ -6,6 +6,7 @@ import { Token as TokenObject } from '../../../models/token';
 import { NewToken } from '../../../types/Token';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { JWT_SECRET_KEY } from '../../../utils/config';
 
 @Resolver()
 export class LoginResolver {
@@ -29,7 +30,7 @@ export class LoginResolver {
     };
 
     return {
-      value: jwt.sign(userForToken, process.env.JWT_SECRET_KEY as string)
+      value: jwt.sign(userForToken, JWT_SECRET_KEY as string)
     };
   }
 }
