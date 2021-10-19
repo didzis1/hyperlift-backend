@@ -4,6 +4,9 @@ import express from 'express';
 import mongoose from 'mongoose';
 import http from 'http';
 import createSchema from './schema';
+import jwt from 'jsonwebtoken';
+import { TokenPayload } from './types/Token';
+import UserModel from './models/user';
 require('dotenv').config();
 
 const startApolloServer = async () => {
@@ -21,7 +24,22 @@ const startApolloServer = async () => {
 
   const server = new ApolloServer({
     schema,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    context: async ({ req }) => {
+      const auth = req.headers.authorization || '';
+      if (auth && auth.toLowerCase().startsWith('bearer ')) {
+        const decodedToken = jwt.verify(
+          auth.substring(7),
+          process.env.JWT_SECRET_KEY as string
+        ) as TokenPayload;
+
+        const currentUser = await UserModel.findById(decodedToken.id);
+
+        return { currentUser };
+      }
+
+      return null;
+    }
   });
 
   await server.start();
