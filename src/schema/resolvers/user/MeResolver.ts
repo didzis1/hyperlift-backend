@@ -4,8 +4,9 @@ import { User } from '../../../models/user';
 
 @Resolver()
 export class MeResolver {
-  @Query(() => User)
+  @Query(() => User, { nullable: true })
   async me(@Ctx() ctx: MyContext): Promise<User | null> {
+    // Returns either null or the currently logged in user
     return ctx.currentUser;
   }
 }
