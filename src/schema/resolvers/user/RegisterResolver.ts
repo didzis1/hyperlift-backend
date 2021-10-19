@@ -22,7 +22,8 @@ export class RegisterResolver {
 
     const savedUser = await user.save();
 
-    if (!savedUser) throw new Error('User could not been saved...');
+    if (!savedUser)
+      throw new Error('An error occured while trying to register the user...');
 
     return savedUser;
   }
