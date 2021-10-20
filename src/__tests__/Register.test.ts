@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import { graphQLCall } from '../test-utils/graphQLCall';
 import { testConnection } from '../test-utils/testConnection';
+import faker from 'faker';
+import UserModel from '../models/user';
 
 beforeAll(async () => {
   await testConnection();
@@ -21,19 +23,33 @@ mutation Mutation($registerInput: RegisterInput!) {
 }`;
 
 describe('RegisterResolver', () => {
-  it('create user', async () => {
-    console.log(
-      await graphQLCall({
-        source: registerMutation,
-        variableValues: {
-          registerInput: {
-            firstName: 'John',
-            lastName: 'Doe',
-            email: 'john.doe@gmail.com',
-            password: 'password'
-          }
+  it('User is created in the database', async () => {
+    const user = {
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      email: faker.internet.email(),
+      password: faker.internet.password()
+    };
+
+    const response = await graphQLCall({
+      source: registerMutation,
+      variableValues: {
+        registerInput: user
+      }
+    });
+
+    expect(response).toMatchObject({
+      data: {
+        register: {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email
         }
-      })
-    );
+      }
+    });
+
+    const userInDatabase = await UserModel.findOne({ email: user.email });
+    expect(userInDatabase).toBeDefined(); // Expect if the user exists in the database
+    expect(userInDatabase!.email).toBe(user.email); // Expect that the user has an email in the database
   });
 });
