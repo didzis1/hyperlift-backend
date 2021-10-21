@@ -19,11 +19,13 @@ export class RegisterResolver {
       email,
       password: hashedPassword
     });
+    let savedUser;
 
-    const savedUser = await user.save();
-
-    if (!savedUser)
-      throw new Error('An error occured while trying to register the user...');
+    try {
+      savedUser = await user.save();
+    } catch (error) {
+      throw new Error('E-mail is already in use');
+    }
 
     return savedUser;
   }
