@@ -12,7 +12,7 @@ import { JWT_SECRET_KEY } from '../../../utils/config';
 export class LoginResolver {
   @Mutation(() => TokenObject, { nullable: true })
   async login(
-    @Arg('LoginInput') { email, password }: LoginInput
+    @Arg('loginInput') { email, password }: LoginInput
   ): Promise<NewToken | null> {
     const user = await UserModel.findOne({ email });
 
