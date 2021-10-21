@@ -8,11 +8,15 @@ import { DeleteAccountResolver } from './user/DeleteAccountResolver';
 import { CreateRoutineResolver } from './routine/CreateRoutineResolver';
 import { GetRoutinesResolver } from './routine/GetRoutines';
 
+// History workouts
+import { AddHistoryResolver } from './history/AddHistory';
+
 export const resolvers = [
   RegisterResolver,
   LoginResolver,
   MeResolver,
   DeleteAccountResolver,
   CreateRoutineResolver,
-  GetRoutinesResolver
+  GetRoutinesResolver,
+  AddHistoryResolver
 ] as const;
