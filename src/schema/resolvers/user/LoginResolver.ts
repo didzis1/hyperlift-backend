@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { Arg, Mutation, Resolver } from 'type-graphql';
 import { LoginInput } from '../inputs/LoginInput';
 import UserModel from '../../../models/user';
@@ -16,19 +15,18 @@ export class LoginResolver {
   ): Promise<NewToken | null> {
     const user = await UserModel.findOne({ email });
 
-    if (!user) throw new Error('Wrong credentials');
+    if (!user) throw new Error('Wrong username or password');
 
     const validPassword = await bcryptjs.compare(password, user.password);
 
     if (!validPassword) {
-      return null;
+      throw new Error('Wrong username or password');
     }
 
     const userForToken = {
       email: user.email,
       id: user._id
     };
-
     return {
       value: jwt.sign(userForToken, JWT_SECRET_KEY as string)
     };
