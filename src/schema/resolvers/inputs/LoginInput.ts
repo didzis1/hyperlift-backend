@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import 'class-validator';
 import { User } from '../../../models/user';
 import { Field, InputType } from 'type-graphql';

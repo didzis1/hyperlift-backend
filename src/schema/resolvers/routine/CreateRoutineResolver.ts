@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
 import { Routine } from '../../../models/routine';
 import RoutineModel from '../../../models/routine';
