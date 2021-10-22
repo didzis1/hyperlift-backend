@@ -1,19 +1,25 @@
 import { Ctx, Query, Resolver } from 'type-graphql';
 import { Routine } from '../../../models/routine';
 import { MyContext } from '../../../types/MyContext';
-import RoutineModel from '../../../models/routine';
+// import RoutineModel from '../../../models/routine';
+import UserModel from '../../../models/user';
 
 @Resolver()
 export class GetRoutinesResolver {
   @Query(() => [Routine])
-  async getRoutines(@Ctx() ctx: MyContext): Promise<Routine[] | null> {
+  async getRoutines(@Ctx() ctx: MyContext): Promise<Routine[] | []> {
     if (!ctx.currentUser) {
       throw new Error('You must be authorized');
     }
-    const userRoutines = await RoutineModel.find({
-      user: ctx.currentUser
-    }).populate('user');
+    const user = await UserModel.findById(ctx.currentUser.id).populate(
+      'routines'
+    );
 
+    if (!user) new Error('User not found...');
+
+    const userRoutines = user!.routines;
+
+    // Returns either routines or empty array
     return userRoutines;
   }
 }
