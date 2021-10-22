@@ -11,6 +11,9 @@ import { GetRoutinesResolver } from './routine/GetRoutines';
 // History workouts
 import { AddHistoryResolver } from './history/AddHistory';
 
+// MaxLift
+import { AddMaxLiftResolver } from './maxLifts/AddMaxLift';
+
 export const resolvers = [
   RegisterResolver,
   LoginResolver,
@@ -18,5 +21,6 @@ export const resolvers = [
   DeleteAccountResolver,
   CreateRoutineResolver,
   GetRoutinesResolver,
-  AddHistoryResolver
+  AddHistoryResolver,
+  AddMaxLiftResolver
 ] as const;
