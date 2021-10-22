@@ -1,14 +1,15 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
-const PORT = process.env.PORT;
-const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
+export const PORT = process.env.PORT;
+export const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
-let MONGODB_URI: string;
+let determineMongoUri;
 
-if (process.env.NODE_ENV === 'TEST') {
-  MONGODB_URI = process.env.MONGODB_URI_TEST as string;
-} else if (process.env.NODE_ENV === 'DEVELOPMENT') {
-  MONGODB_URI = process.env.MONGODB_URI as string;
+if (process.env.NODE_ENV == 'test') {
+  determineMongoUri = process.env.MONGODB_URI_TEST;
+} else {
+  determineMongoUri = process.env.MONGODB_URI;
 }
 
-export { PORT, MONGODB_URI, JWT_SECRET_KEY };
+export const MONGODB_URI = determineMongoUri;
