@@ -3,7 +3,7 @@ import { Routine } from '../../../models/routine';
 import RoutineModel from '../../../models/routine';
 import { NewRoutineInput } from '../inputs/RoutineInput';
 import { MyContext } from '../../../types/MyContext';
-
+import UserModel from '../../../models/user';
 @Resolver()
 export class CreateRoutineResolver {
   @Mutation(() => Routine)
@@ -15,17 +15,24 @@ export class CreateRoutineResolver {
       throw new Error('You must be authorized to create a user');
     }
 
-    const newRoutine = new RoutineModel({
-      ...routineData,
-      user: ctx.currentUser.id
-    });
+    const user = await UserModel.findById(ctx.currentUser.id);
 
+    if (!user) {
+      // This should not happen since the user is logged in
+      throw new Error('User not found...');
+    }
+
+    // Create a new routine and save it to the database
+    const newRoutine = new RoutineModel(routineData);
     const savedRoutine = await newRoutine.save();
 
     if (!savedRoutine)
       throw new Error('Error while trying to save a routine...');
 
-    // Populate the user field so that you can return user information
-    return savedRoutine.populate('user');
+    // Add routine reference to the user that created it
+    user?.routines.push(savedRoutine._id);
+    await user.save();
+
+    return savedRoutine;
   }
 }
