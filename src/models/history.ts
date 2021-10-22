@@ -16,9 +16,9 @@ export class History {
   @Property({ type: () => WorkoutSplit, required: true })
   workout: WorkoutSplit;
 
-  // @Field(() => Date)
-  // @Property({ required: true, default: Date.now() })
-  // createdAt: Date;
+  @Field(() => Date)
+  @Property({ required: false, default: Date.now() })
+  createdAt: Date;
 }
 
 const HistoryModel = getModelForClass(History);
