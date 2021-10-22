@@ -1,7 +1,6 @@
-import { prop as Property, getModelForClass, Ref } from '@typegoose/typegoose';
+import { prop as Property, getModelForClass } from '@typegoose/typegoose';
 import { ObjectId } from 'mongoose';
 import { Field, ObjectType, ID, Int } from 'type-graphql';
-import { User } from './user';
 
 @ObjectType()
 export class Routine {
@@ -15,10 +14,6 @@ export class Routine {
   @Field(() => [WorkoutSplit])
   @Property({ type: () => [WorkoutSplit], default: [] })
   workouts: WorkoutSplit[];
-
-  @Field(() => User)
-  @Property({ ref: User, required: true })
-  user: Ref<User>;
 }
 
 @ObjectType()

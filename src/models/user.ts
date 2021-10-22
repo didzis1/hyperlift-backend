@@ -2,6 +2,8 @@ import { prop as Property, getModelForClass } from '@typegoose/typegoose';
 import { ObjectId } from 'mongoose';
 import { Field, ObjectType, ID } from 'type-graphql';
 import { IsEmail } from 'class-validator';
+import { MaxLift } from './maxLift';
+import { Routine } from './routine';
 @ObjectType()
 export class User {
   @Field(() => ID)
@@ -22,6 +24,18 @@ export class User {
 
   @Property({ required: true })
   password: string;
+
+  @Field(() => [Routine])
+  @Property({
+    ref: Routine,
+    required: false,
+    default: []
+  })
+  routines: Routine[];
+
+  @Field(() => [MaxLift])
+  @Property({ type: () => [MaxLift], required: false })
+  maxLifts: MaxLift[];
 }
 
 const UserModel = getModelForClass(User);
