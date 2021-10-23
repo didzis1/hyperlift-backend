@@ -4,6 +4,7 @@ import { Field, ObjectType, ID } from 'type-graphql';
 import { IsEmail } from 'class-validator';
 import { MaxLift } from './maxLift';
 import { Routine } from './routine';
+import { History } from './history';
 @ObjectType()
 export class User {
   @Field(() => ID)
@@ -34,8 +35,12 @@ export class User {
   routines: Routine[];
 
   @Field(() => [MaxLift])
-  @Property({ type: () => [MaxLift], required: false })
+  @Property({ type: () => [MaxLift], required: false, default: [] })
   maxLifts: MaxLift[];
+
+  @Field(() => [History])
+  @Property({ type: () => [History], required: false, default: [] })
+  history: History[];
 }
 
 const UserModel = getModelForClass(User);
