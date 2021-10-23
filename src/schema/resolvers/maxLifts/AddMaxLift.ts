@@ -1,6 +1,6 @@
 import { MyContext } from '../../../types/MyContext';
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
-import MaxLiftModel, { MaxLift } from '../../../models/maxLift';
+import { MaxLift } from '../../../models/maxLift';
 import UserModel from '../../../models/user';
 import { NewMaxLiftInput } from '../../inputs/NewMaxLiftInput';
 
@@ -17,15 +17,12 @@ export class AddMaxLiftResolver {
 
     const user = await UserModel.findById(ctx.currentUser.id);
 
-    if (!user) {
-      throw new Error('User not found');
-    }
+    if (!user) throw new Error('User not found');
 
-    const newMaxLift = await MaxLiftModel.create(maxLiftData);
-
-    if (!newMaxLift) {
-      throw new Error('An error occured while trying to create a new max lift');
-    }
+    const newMaxLift = {
+      id: user.maxLifts.length + 1,
+      ...maxLiftData
+    };
 
     user.maxLifts.push(newMaxLift);
 
