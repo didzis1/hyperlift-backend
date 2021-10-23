@@ -6,7 +6,7 @@ import { User } from '../models/user';
 type Options = {
   source: string;
   variableValues?: Maybe<{ [key: string]: any }>;
-  currentUser?: User | null;
+  currentUser?: Omit<User, 'password'> | null;
 };
 
 let schema: GraphQLSchema;
