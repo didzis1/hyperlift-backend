@@ -3,6 +3,7 @@ import HistoryModel, { History } from '../../../models/history';
 import RoutineModel from '../../../models/routine';
 import { NewHistoryInput } from '../../inputs/NewHistoryInput';
 import { MyContext } from '../../../types/MyContext';
+import UserModel from '../../../models/user';
 
 @Resolver()
 export class AddHistoryResolver {
@@ -15,21 +16,28 @@ export class AddHistoryResolver {
       throw new Error('You must be authorized to create a workout history');
     }
 
+    const user = await UserModel.findById(ctx.currentUser.id);
+
+    if (!user) throw new Error('User not found');
+
     const routineInUse = await RoutineModel.findById(historyData.routine);
-    console.log(historyData.routine);
 
-    if (!routineInUse) {
-      // This should never happen since the workout comes from routine
-      throw new Error('Something went wrong while trying to save workout...');
-    }
+    // This should never happen since the workout comes from routine
+    if (!routineInUse) throw new Error('Could not find the routine..');
 
-    const newHistory = new HistoryModel({
+    const newHistory = await HistoryModel.create({
       ...historyData,
       routine: routineInUse._id
     });
 
-    const savedHistory = await newHistory.save();
+    user.history.push(newHistory);
 
-    return savedHistory.populate('routine');
+    try {
+      await user.save();
+    } catch (error) {
+      throw new Error('An error occured while trying to save your workout');
+    }
+
+    return newHistory.populate('routine');
   }
 }
