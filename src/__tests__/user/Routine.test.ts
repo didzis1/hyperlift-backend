@@ -101,6 +101,7 @@ const findRoutinesQuery = `
 	}
 `;
 
+// User and routine is created in multiple tests, reusable function
 const createUserAndRoutine = async () => {
   const fakeUser = await UserModel.create({
     firstName: faker.name.firstName(),
