@@ -3,6 +3,7 @@ import { graphQLCall } from '../../test-utils/graphQLCall';
 import { testConnection } from '../../test-utils/testConnection';
 import faker from 'faker';
 import UserModel from '../../models/user';
+import { registerMutation } from '../../test-utils/mutations/registerMutation';
 
 beforeAll(async () => {
   await testConnection();
@@ -11,16 +12,6 @@ beforeAll(async () => {
 afterAll(async () => {
   await mongoose.connection.close();
 });
-
-const registerMutation = `
-mutation Mutation($registerInput: RegisterInput!) {
-  register(registerInput: $registerInput) {
-    id
-    firstName
-    lastName
-    email
-  }
-}`;
 
 describe('RegisterResolver', () => {
   it('User can be created', async () => {

@@ -3,6 +3,7 @@ import { testConnection } from '../../test-utils/testConnection';
 import faker from 'faker';
 import UserModel from '../../models/user';
 import { graphQLCall } from '../../test-utils/graphQLCall';
+import { meQuery } from '../../test-utils/queries/meQuery';
 
 beforeAll(async () => {
   await testConnection();
@@ -11,16 +12,6 @@ beforeAll(async () => {
 afterAll(async () => {
   await mongoose.connection.close();
 });
-
-const meQuery = `
-{
-  me {
-    id
-    firstName
-    lastName
-    email
-  }
-}`;
 
 describe('Me', () => {
   it('Get user from context', async () => {

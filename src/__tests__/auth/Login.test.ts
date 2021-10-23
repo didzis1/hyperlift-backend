@@ -6,6 +6,7 @@ import UserModel from '../../models/user';
 import jwt from 'jsonwebtoken';
 import bcryptjs from 'bcryptjs';
 import { JWT_SECRET_KEY } from '../../utils/config';
+import { loginMutation } from '../../test-utils/mutations/loginMutation';
 
 beforeAll(async () => {
   await testConnection();
@@ -14,13 +15,6 @@ beforeAll(async () => {
 afterAll(async () => {
   await mongoose.connection.close();
 });
-
-const loginMutation = `
-mutation LoginMutation($loginInput: LoginInput!) {
-  login(loginInput: $loginInput) {
-    value
-  }
-}`;
 
 const userWithHashedPassword = async () => {
   // Create a password and hash it so that LoginResolver can compare passwords with bcryptjs
