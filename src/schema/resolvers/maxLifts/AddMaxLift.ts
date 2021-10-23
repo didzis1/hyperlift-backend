@@ -2,7 +2,7 @@ import { MyContext } from '../../../types/MyContext';
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
 import MaxLiftModel, { MaxLift } from '../../../models/maxLift';
 import UserModel from '../../../models/user';
-import { NewMaxLiftInput } from '../inputs/NewMaxLiftInput';
+import { NewMaxLiftInput } from '../../inputs/NewMaxLiftInput';
 
 @Resolver()
 export class AddMaxLiftResolver {

@@ -1,6 +1,6 @@
 import 'class-validator';
 import { InputType, Field } from 'type-graphql';
-import { User } from '../../../models/user';
+import { User } from '../../models/user';
 import { IsEmail, Length } from 'class-validator';
 
 @InputType()

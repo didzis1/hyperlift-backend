@@ -1,6 +1,6 @@
 import UserModel, { User } from '../../../models/user';
 import { Resolver, Mutation, Arg } from 'type-graphql';
-import { RegisterInput } from '../inputs/RegisterInput';
+import { RegisterInput } from '../../inputs/RegisterInput';
 import bcryptjs from 'bcryptjs';
 
 @Resolver()

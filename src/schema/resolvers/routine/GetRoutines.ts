@@ -1,7 +1,6 @@
 import { Ctx, Query, Resolver } from 'type-graphql';
 import { Routine } from '../../../models/routine';
 import { MyContext } from '../../../types/MyContext';
-// import RoutineModel from '../../../models/routine';
 import UserModel from '../../../models/user';
 
 @Resolver()

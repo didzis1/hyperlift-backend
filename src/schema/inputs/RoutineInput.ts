@@ -1,5 +1,5 @@
 import { InputType, Field, Int } from 'type-graphql';
-import { Exercise, Routine, WorkoutSplit } from '../../../models/routine';
+import { Exercise, Routine, WorkoutSplit } from '../../models/routine';
 
 @InputType()
 export class NewRoutineInput implements Partial<Routine> {

@@ -1,7 +1,7 @@
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
 import HistoryModel, { History } from '../../../models/history';
 import RoutineModel from '../../../models/routine';
-import { NewHistoryInput } from '../inputs/NewHistoryInput';
+import { NewHistoryInput } from '../../inputs/NewHistoryInput';
 import { MyContext } from '../../../types/MyContext';
 
 @Resolver()

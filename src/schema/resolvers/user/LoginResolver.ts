@@ -1,5 +1,5 @@
 import { Arg, Mutation, Resolver } from 'type-graphql';
-import { LoginInput } from '../inputs/LoginInput';
+import { LoginInput } from '../../inputs/LoginInput';
 import UserModel from '../../../models/user';
 import { Token as TokenObject } from '../../../models/token';
 import { NewToken } from '../../../types/Token';
