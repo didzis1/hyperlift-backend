@@ -1,5 +1,5 @@
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
-import HistoryModel, { History } from '../../../models/history';
+import { History } from '../../../models/history';
 import RoutineModel from '../../../models/routine';
 import { NewHistoryInput } from '../../inputs/NewHistoryInput';
 import { MyContext } from '../../../types/MyContext';
@@ -25,10 +25,12 @@ export class AddHistoryResolver {
     // This should never happen since the workout comes from routine
     if (!routineInUse) throw new Error('Could not find the routine..');
 
-    const newHistory = await HistoryModel.create({
-      ...historyData,
-      routine: routineInUse._id
-    });
+    const newHistory = {
+      id: user.history.length + 1,
+      workout: historyData.workout,
+      routine: routineInUse,
+      createdAt: new Date()
+    };
 
     user.history.push(newHistory);
 
@@ -38,6 +40,6 @@ export class AddHistoryResolver {
       throw new Error('An error occured while trying to save your workout');
     }
 
-    return newHistory.populate('routine');
+    return newHistory;
   }
 }
