@@ -26,7 +26,6 @@ export class AddHistoryResolver {
     if (!routineInUse) throw new Error('Could not find the routine..');
 
     const newHistory = {
-      id: user.history.length + 1,
       workout: historyData.workout,
       routine: routineInUse,
       createdAt: new Date()

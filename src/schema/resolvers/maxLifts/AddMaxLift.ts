@@ -20,7 +20,6 @@ export class AddMaxLiftResolver {
     if (!user) throw new Error('User not found');
 
     const newMaxLift = {
-      id: user.maxLifts.length + 1,
       ...maxLiftData
     };
 
