@@ -4,7 +4,7 @@ import RoutineModel from '../../../models/routine';
 import { NewHistoryInput } from '../../inputs/NewHistoryInput';
 import { MyContext } from '../../../types/MyContext';
 import UserModel from '../../../models/user';
-
+import { v4 as uuidv4 } from 'uuid';
 @Resolver()
 export class AddHistoryResolver {
   @Mutation(() => History)
@@ -26,6 +26,7 @@ export class AddHistoryResolver {
     if (!routineInUse) throw new Error('Could not find the routine..');
 
     const newHistory = {
+      id: uuidv4(),
       workout: historyData.workout,
       routine: routineInUse,
       createdAt: new Date()

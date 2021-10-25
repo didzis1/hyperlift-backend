@@ -3,6 +3,7 @@ import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
 import { MaxLift } from '../../../models/maxLift';
 import UserModel from '../../../models/user';
 import { NewMaxLiftInput } from '../../inputs/NewMaxLiftInput';
+import { v4 as uuidv4 } from 'uuid';
 
 @Resolver()
 export class AddMaxLiftResolver {
@@ -20,6 +21,7 @@ export class AddMaxLiftResolver {
     if (!user) throw new Error('User not found');
 
     const newMaxLift = {
+      id: uuidv4(),
       ...maxLiftData
     };
 
