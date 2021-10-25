@@ -13,6 +13,7 @@ import { AddHistoryResolver } from './history/AddHistory';
 
 // MaxLift
 import { AddMaxLiftResolver } from './maxLifts/AddMaxLift';
+import { GetMaxLifts } from './maxLifts/GetMaxLifts';
 
 export const resolvers = [
   RegisterResolver,
@@ -22,5 +23,6 @@ export const resolvers = [
   CreateRoutineResolver,
   GetRoutinesResolver,
   AddHistoryResolver,
-  AddMaxLiftResolver
+  AddMaxLiftResolver,
+  GetMaxLifts
 ] as const;
