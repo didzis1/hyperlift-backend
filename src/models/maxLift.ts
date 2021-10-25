@@ -4,6 +4,10 @@ import { prop as Property } from '@typegoose/typegoose';
 @ObjectType()
 export class MaxLift {
   @Field()
+  @Property()
+  id: string;
+
+  @Field()
   @Property({ required: true })
   exercise: string;
 

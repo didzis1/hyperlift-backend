@@ -4,6 +4,10 @@ import { Routine, WorkoutSplit } from './routine';
 
 @ObjectType()
 export class History {
+  @Field()
+  @Property()
+  id: string;
+
   @Field(() => Routine)
   @Property({ ref: () => Routine, required: true })
   routine: Ref<Routine>;
