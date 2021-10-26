@@ -1,6 +1,5 @@
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
 import { History } from '../../../models/history';
-import RoutineModel from '../../../models/routine';
 import { NewHistoryInput } from '../../inputs/NewHistoryInput';
 import { MyContext } from '../../../types/MyContext';
 import UserModel from '../../../models/user';
@@ -20,15 +19,10 @@ export class AddHistoryResolver {
 
     if (!user) throw new Error('User not found');
 
-    const routineInUse = await RoutineModel.findById(historyData.routine);
-
-    // This should never happen since the workout comes from routine
-    if (!routineInUse) throw new Error('Could not find the routine..');
-
     const newHistory = {
       id: uuidv4(),
       workout: historyData.workout,
-      routine: routineInUse,
+      routineId: historyData.routineId,
       createdAt: new Date()
     };
 
