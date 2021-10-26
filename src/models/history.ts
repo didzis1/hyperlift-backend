@@ -1,6 +1,6 @@
 import { Field, ObjectType } from 'type-graphql';
-import { prop as Property, Ref } from '@typegoose/typegoose';
-import { Routine, WorkoutSplit } from './routine';
+import { prop as Property } from '@typegoose/typegoose';
+import { WorkoutSplit } from './routine';
 
 @ObjectType()
 export class History {
@@ -8,14 +8,15 @@ export class History {
   @Property()
   id: string;
 
-  @Field(() => Routine)
-  @Property({ ref: () => Routine, required: true })
-  routine: Ref<Routine>;
+  @Field()
+  @Property({ required: true })
+  routineId: string;
 
   @Field(() => WorkoutSplit)
   @Property({ type: () => WorkoutSplit, required: true })
   workout: WorkoutSplit;
 
   @Field(() => Date)
+  @Property()
   createdAt: Date;
 }

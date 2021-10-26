@@ -1,11 +1,11 @@
 import { prop as Property, getModelForClass } from '@typegoose/typegoose';
-import { ObjectId } from 'mongoose';
-import { Field, ObjectType, ID, Int } from 'type-graphql';
+import { Field, ObjectType, Int } from 'type-graphql';
 
 @ObjectType()
 export class Routine {
-  @Field(() => ID)
-  id: ObjectId;
+  @Field()
+  @Property()
+  id: string;
 
   @Field({ nullable: true })
   @Property({ required: false })
