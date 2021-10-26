@@ -7,5 +7,5 @@ export class NewHistoryInput {
   workout: NewWorkoutSplitInput;
 
   @Field()
-  routine: string;
+  routineId: string;
 }
