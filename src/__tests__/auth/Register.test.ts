@@ -3,7 +3,7 @@ import { graphQLCall } from '../../test-utils/graphQLCall';
 import { testConnection } from '../../test-utils/testConnection';
 import faker from 'faker';
 import UserModel from '../../models/user';
-import { registerMutation } from '../../test-utils/mutations/registerMutation';
+import { register } from '../../test-utils/mutations/register';
 
 beforeAll(async () => {
   await testConnection();
@@ -23,7 +23,7 @@ describe('RegisterResolver', () => {
     };
 
     const response = await graphQLCall({
-      source: registerMutation,
+      source: register,
       variableValues: {
         registerInput: user
       }
@@ -53,7 +53,7 @@ describe('RegisterResolver', () => {
     };
 
     const response = await graphQLCall({
-      source: registerMutation,
+      source: register,
       variableValues: {
         registerInput: user
       }
@@ -81,7 +81,7 @@ describe('RegisterResolver', () => {
     expect(await UserModel.findOne({ email: user.email })).toBeDefined(); // Check if user got saved to the database
 
     const response = await graphQLCall({
-      source: registerMutation,
+      source: register,
       variableValues: {
         registerInput: user
       }

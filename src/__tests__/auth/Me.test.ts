@@ -3,7 +3,7 @@ import { testConnection } from '../../test-utils/testConnection';
 import faker from 'faker';
 import UserModel from '../../models/user';
 import { graphQLCall } from '../../test-utils/graphQLCall';
-import { meQuery } from '../../test-utils/queries/meQuery';
+import { me } from '../../test-utils/queries/me';
 
 beforeAll(async () => {
   await testConnection();
@@ -27,7 +27,7 @@ describe('Me', () => {
     const currentUser = await UserModel.findById(user._id);
 
     const response = await graphQLCall({
-      source: meQuery,
+      source: me,
       currentUser
     });
 

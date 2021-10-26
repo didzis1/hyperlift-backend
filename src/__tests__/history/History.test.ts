@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { graphQLCall } from '../../test-utils/graphQLCall';
 import { testConnection } from '../../test-utils/testConnection';
 import { createUserAndRoutine } from '../../test-utils/createUserAndRoutine';
-import { addHistoryMutation } from '../../test-utils/mutations/addHistoryMutation';
+import { addHistory } from '../../test-utils/mutations/addHistory';
 
 beforeAll(async () => {
   await testConnection();
@@ -35,7 +35,7 @@ describe('HistoryResolver', () => {
     const { createdRoutine, currentUser } = await createUserAndRoutine();
 
     const response = await graphQLCall({
-      source: addHistoryMutation,
+      source: addHistory,
       variableValues: {
         historyData: {
           routine: createdRoutine!.data!.createRoutine.id,

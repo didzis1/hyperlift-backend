@@ -6,7 +6,7 @@ import UserModel from '../../models/user';
 import jwt from 'jsonwebtoken';
 import bcryptjs from 'bcryptjs';
 import { JWT_SECRET_KEY } from '../../utils/config';
-import { loginMutation } from '../../test-utils/mutations/loginMutation';
+import { login } from '../../test-utils/mutations/login';
 
 beforeAll(async () => {
   await testConnection();
@@ -40,7 +40,7 @@ describe('LoginResolver', () => {
     const { user, password } = await userWithHashedPassword();
 
     const response = await graphQLCall({
-      source: loginMutation,
+      source: login,
       variableValues: {
         loginInput: {
           email: user.email,
@@ -72,7 +72,7 @@ describe('LoginResolver', () => {
     const wrongPassword = 'WrongOnPurpose';
 
     const response = await graphQLCall({
-      source: loginMutation,
+      source: login,
       variableValues: {
         loginInput: { email: user.email, password: wrongPassword }
       }
@@ -87,7 +87,7 @@ describe('LoginResolver', () => {
 
   it('Can not log in with user that does not exist', async () => {
     const response = await graphQLCall({
-      source: loginMutation,
+      source: login,
       variableValues: {
         loginInput: {
           email: 'non-existant-user@gmail.com',

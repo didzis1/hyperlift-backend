@@ -7,7 +7,7 @@ import {
   createUserAndRoutine,
   dummyRoutineData
 } from '../../test-utils/createUserAndRoutine';
-import { getRoutinesQuery } from '../../test-utils/queries/getRoutinesQuery';
+import { getRoutines } from '../../test-utils/queries/getRoutines';
 
 beforeAll(async () => {
   await testConnection();
@@ -43,7 +43,7 @@ describe('RoutineResolver', () => {
     const { currentUser } = await createUserAndRoutine();
 
     const allRoutines = await graphQLCall({
-      source: getRoutinesQuery,
+      source: getRoutines,
       currentUser
     });
 
