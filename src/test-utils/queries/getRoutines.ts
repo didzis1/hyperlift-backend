@@ -1,4 +1,4 @@
-export const getRoutinesQuery = `
+export const getRoutines = `
 	query Query {
 		getRoutines {
 			id

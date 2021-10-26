@@ -1,7 +1,7 @@
 import faker from 'faker';
 import UserModel from '../models/user';
 import { graphQLCall } from './graphQLCall';
-import { createRoutineMutation } from './mutations/createRoutineMutation';
+import { createRoutine } from './mutations/createRoutine';
 
 // User and routine is created in multiple tests, reusable function
 export const createUserAndRoutine = async () => {
@@ -17,7 +17,7 @@ export const createUserAndRoutine = async () => {
   const currentUser = await UserModel.findById(fakeUser._id);
 
   const createdRoutine = await graphQLCall({
-    source: createRoutineMutation,
+    source: createRoutine,
     variableValues: dummyRoutineData,
     currentUser: {
       id: currentUser!._id,
@@ -25,7 +25,8 @@ export const createUserAndRoutine = async () => {
       firstName: currentUser!.firstName,
       lastName: currentUser!.lastName,
       maxLifts: currentUser!.maxLifts,
-      routines: currentUser!.routines
+      routines: currentUser!.routines,
+      history: currentUser!.history
     }
   });
 

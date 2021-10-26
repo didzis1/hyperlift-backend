@@ -1,4 +1,4 @@
-export const registerMutation = `
+export const register = `
 	mutation Mutation($registerInput: RegisterInput!) {
 		register(registerInput: $registerInput) {
 			id

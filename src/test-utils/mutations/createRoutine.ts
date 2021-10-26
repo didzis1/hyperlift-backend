@@ -1,4 +1,4 @@
-export const createRoutineMutation = `
+export const createRoutine = `
 	mutation Mutation($routineData: NewRoutineInput!) {
 		createRoutine(routineData: $routineData) {
 			id
