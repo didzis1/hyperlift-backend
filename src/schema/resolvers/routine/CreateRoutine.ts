@@ -4,6 +4,7 @@ import RoutineModel from '../../../models/routine';
 import { NewRoutineInput } from '../../inputs/RoutineInput';
 import { MyContext } from '../../../types/MyContext';
 import UserModel from '../../../models/user';
+import { v4 as uuidv4 } from 'uuid';
 @Resolver()
 export class CreateRoutineResolver {
   @Mutation(() => Routine)
@@ -23,7 +24,7 @@ export class CreateRoutineResolver {
     }
 
     // Create a new routine and save it to the database
-    const newRoutine = new RoutineModel(routineData);
+    const newRoutine = new RoutineModel({ id: uuidv4(), ...routineData });
     const savedRoutine = await newRoutine.save();
 
     if (!savedRoutine)

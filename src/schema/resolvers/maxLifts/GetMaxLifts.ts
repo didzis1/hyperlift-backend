@@ -4,7 +4,7 @@ import { MyContext } from '../../../types/MyContext';
 import UserModel from '../../../models/user';
 
 @Resolver()
-export class GetMaxLifts {
+export class GetMaxLiftsResolver {
   @Query(() => [MaxLift])
   async getMaxLifts(@Ctx() ctx: MyContext): Promise<MaxLift[] | []> {
     if (!ctx.currentUser) {
