@@ -1,8 +1,7 @@
 import { InputType, Field, Int } from 'type-graphql';
-import { Exercise, Routine, WorkoutSplit } from '../../models/routine';
 
 @InputType()
-export class NewRoutineInput implements Partial<Routine> {
+export class NewRoutineInput {
   @Field({ nullable: true })
   description?: string;
 
@@ -11,7 +10,7 @@ export class NewRoutineInput implements Partial<Routine> {
 }
 
 @InputType()
-export class NewWorkoutSplitInput implements Partial<WorkoutSplit> {
+export class NewWorkoutSplitInput {
   @Field()
   name: string;
 
@@ -20,7 +19,7 @@ export class NewWorkoutSplitInput implements Partial<WorkoutSplit> {
 }
 
 @InputType()
-export class NewExerciseInput implements Partial<Exercise> {
+export class NewExerciseInput {
   @Field()
   exerciseName: string;
 
