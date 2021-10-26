@@ -29,7 +29,6 @@ export const createUserAndRoutine = async () => {
       history: currentUser!.history
     }
   });
-
   return { createdRoutine, currentUser, fakeUser };
 };
 

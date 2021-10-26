@@ -38,7 +38,7 @@ describe('HistoryResolver', () => {
       source: addHistory,
       variableValues: {
         historyData: {
-          routine: createdRoutine!.data!.createRoutine.id,
+          routineId: createdRoutine!.data!.createRoutine.id,
           workout
         }
       },

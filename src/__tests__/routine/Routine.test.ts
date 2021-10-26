@@ -20,21 +20,20 @@ afterAll(async () => {
 describe('RoutineResolver', () => {
   it('User can create a routine', async () => {
     const { createdRoutine, fakeUser } = await createUserAndRoutine();
-
     expect(createdRoutine!.data!.createRoutine.workouts).toMatchObject(
       dummyRoutineData.routineData.workouts
     );
 
-    const findRoutine = await RoutineModel.findById(
-      createdRoutine!.data!.createRoutine.id
-    );
+    const findRoutine = await RoutineModel.findOne({
+      id: createdRoutine!.data!.createRoutine.id
+    });
 
     expect(findRoutine).toBeDefined();
     expect(findRoutine!.description).toMatch(
       dummyRoutineData.routineData.description
     );
 
-    // Check that the routine is saved under user
+    //Check that the routine is saved under user
     const userWithRoutine = await UserModel.findById(fakeUser._id);
     expect(userWithRoutine!.routines).toHaveLength(1);
   });

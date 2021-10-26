@@ -2,10 +2,7 @@ export const addHistory = `
 	mutation Mutation($historyData: NewHistoryInput!) {
 		addHistory(historyData: $historyData) {
 			id
-			routine {
-				id
-				description
-			}
+			routineId
 			workout {
 				name
 				exercises {
