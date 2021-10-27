@@ -34,7 +34,9 @@ const startApolloServer = async () => {
           JWT_SECRET_KEY as string
         ) as TokenPayload;
 
-        const currentUser = await UserModel.findById(decodedToken.id);
+        const currentUser = await UserModel.findById(decodedToken.id).populate(
+          'routines'
+        );
 
         return { currentUser };
       }
