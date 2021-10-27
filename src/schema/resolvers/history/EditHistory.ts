@@ -28,7 +28,8 @@ export class EditHistoryResolver {
     const newHistory = {
       id: currentHistory.id,
       routineId: currentHistory.routineId,
-      workout: editHistoryData.workout,
+      splitName: editHistoryData.splitName,
+      exercises: editHistoryData.exercises,
       createdAt: currentHistory.createdAt
     };
 
