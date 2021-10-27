@@ -1,7 +1,31 @@
-import { Field, ObjectType } from 'type-graphql';
+import { Field, ObjectType, Int } from 'type-graphql';
 import { prop as Property } from '@typegoose/typegoose';
-import { WorkoutSplit } from './routine';
 
+@ObjectType()
+export class ExerciseSets {
+  @Field()
+  @Property({ required: true })
+  exerciseName: string;
+
+  @Field(() => [SetsData])
+  @Property({ type: () => [SetsData], required: true })
+  setsData: SetsData[];
+}
+
+@ObjectType()
+export class SetsData {
+  @Field(() => Int)
+  @Property({ required: true })
+  set: number;
+
+  @Field(() => Int)
+  @Property({ required: true })
+  reps: number;
+
+  @Field(() => Int, { nullable: true })
+  @Property({ required: false })
+  weight?: number;
+}
 @ObjectType()
 export class History {
   @Field()
@@ -12,9 +36,13 @@ export class History {
   @Property({ required: true })
   routineId: string;
 
-  @Field(() => WorkoutSplit)
-  @Property({ type: () => WorkoutSplit, required: true })
-  workout: WorkoutSplit;
+  @Field()
+  @Property({ required: true })
+  splitName: string;
+
+  @Field(() => [ExerciseSets])
+  @Property({ type: () => [ExerciseSets], required: true })
+  exercises: ExerciseSets[];
 
   @Field(() => Date)
   @Property()
