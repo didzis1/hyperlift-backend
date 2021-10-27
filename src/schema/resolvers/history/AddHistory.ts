@@ -26,7 +26,7 @@ export class AddHistoryResolver {
       exercises: historyData.exercises,
       createdAt: new Date()
     };
-    console.log(newHistory);
+
     user.history.push(newHistory);
 
     try {

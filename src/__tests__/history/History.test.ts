@@ -12,20 +12,23 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-const workout = {
-  name: 'Pull day',
+const newHistory = {
+  splitName: 'Push day',
   exercises: [
     {
-      exerciseName: 'Deadlift',
-      reps: 5,
-      sets: 3,
-      weight: 100
-    },
-    {
-      exerciseName: 'Bend over rows',
-      reps: 5,
-      sets: 3,
-      weight: 70
+      exerciseName: 'Bench Press',
+      setsData: [
+        {
+          reps: 10,
+          set: 1,
+          weight: 58
+        },
+        {
+          reps: 8,
+          set: 2,
+          weight: 65
+        }
+      ]
     }
   ]
 };
@@ -39,12 +42,14 @@ describe('HistoryResolver', () => {
       variableValues: {
         historyData: {
           routineId: createdRoutine!.data!.createRoutine.id,
-          workout
+          ...newHistory
         }
       },
       currentUser
     });
 
-    expect(response!.data!.addHistory.workout).toMatchObject(workout);
+    expect(response!.data!.addHistory.exercises).toMatchObject(
+      newHistory.exercises
+    );
   });
 });

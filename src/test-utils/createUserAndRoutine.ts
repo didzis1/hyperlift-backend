@@ -14,7 +14,9 @@ export const createUserAndRoutine = async () => {
 
   // Normally user's ID is verified through token
   // Here we assume that the user is logged in
-  const currentUser = await UserModel.findById(fakeUser._id);
+  const currentUser = await UserModel.findById(fakeUser._id).populate(
+    'routines'
+  );
 
   const createdRoutine = await graphQLCall({
     source: createRoutine,
