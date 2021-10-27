@@ -1,11 +1,32 @@
-import { InputType, Field } from 'type-graphql';
-import { NewWorkoutSplitInput } from './RoutineInput';
+import { InputType, Field, Int } from 'type-graphql';
 
+@InputType()
+export class NewSetsData {
+  @Field(() => Int)
+  reps: number;
+
+  @Field(() => Int)
+  set: number;
+
+  @Field(() => Int, { nullable: true })
+  weight?: number;
+}
+@InputType()
+export class NewExerciseSetsInput {
+  @Field()
+  exerciseName: string;
+
+  @Field(() => [NewSetsData])
+  setsData: NewSetsData[];
+}
 @InputType()
 export class NewHistoryInput {
   @Field()
-  workout: NewWorkoutSplitInput;
+  routineId: string;
 
   @Field()
-  routineId: string;
+  splitName: string;
+
+  @Field(() => [NewExerciseSetsInput])
+  exercises: NewExerciseSetsInput[];
 }
