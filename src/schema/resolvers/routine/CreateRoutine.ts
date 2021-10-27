@@ -31,7 +31,7 @@ export class CreateRoutineResolver {
       throw new Error('Error while trying to save a routine...');
 
     // Add routine reference to the user that created it
-    user?.routines.push(savedRoutine._id);
+    user?.routines.push(savedRoutine.id);
     await user.save();
 
     return savedRoutine;
