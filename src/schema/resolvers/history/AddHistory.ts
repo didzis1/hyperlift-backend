@@ -21,11 +21,12 @@ export class AddHistoryResolver {
 
     const newHistory = {
       id: uuidv4(),
-      workout: historyData.workout,
       routineId: historyData.routineId,
+      splitName: historyData.splitName,
+      exercises: historyData.exercises,
       createdAt: new Date()
     };
-
+    console.log(newHistory);
     user.history.push(newHistory);
 
     try {
