@@ -13,7 +13,7 @@ export class CreateRoutineResolver {
     @Arg('routineData') routineData: NewRoutineInput
   ): Promise<Routine> {
     if (!ctx.currentUser) {
-      throw new Error('You must be authorized to create a user');
+      throw new Error('You must be authorized to create a routine');
     }
 
     const user = await UserModel.findById(ctx.currentUser.id);
