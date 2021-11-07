@@ -23,6 +23,14 @@ export class User {
   @Property({ required: true, unique: true })
   email: string;
 
+  // @Field(() => Int)
+  // @Property({ required: false })
+  // age: number;
+
+  // @Field()
+  // @Property({ required: false })
+  // liftingType: string;
+
   @Property({ required: true })
   password: string;
 
