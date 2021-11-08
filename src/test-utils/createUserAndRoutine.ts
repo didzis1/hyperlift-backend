@@ -28,7 +28,9 @@ export const createUserAndRoutine = async () => {
       lastName: currentUser!.lastName,
       maxLifts: currentUser!.maxLifts,
       routines: currentUser!.routines,
-      history: currentUser!.history
+      history: currentUser!.history,
+      liftingType: currentUser!.liftingType,
+      age: currentUser!.age
     }
   });
   return { createdRoutine, currentUser, fakeUser };
