@@ -8,8 +8,8 @@ export class NewSetsData {
   @Field(() => Int)
   set: number;
 
-  @Field(() => Int, { nullable: true })
-  weight?: number;
+  @Field(() => Int)
+  weight: number;
 }
 @InputType()
 export class NewExerciseSetsInput {
