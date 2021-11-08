@@ -1,10 +1,16 @@
 import { prop as Property, getModelForClass } from '@typegoose/typegoose';
 import { ObjectId } from 'mongoose';
-import { Field, ObjectType, ID } from 'type-graphql';
+import { Field, ObjectType, ID, Int } from 'type-graphql';
 import { IsEmail } from 'class-validator';
 import { MaxLift } from './maxLift';
 import { Routine } from './routine';
 import { History } from './history';
+
+enum LiftingType {
+  Olympic = 'Olympic Weightlifting',
+  Bodybuilding = 'Bodybuilding',
+  Powerlifting = 'Powerlifting'
+}
 @ObjectType()
 export class User {
   @Field(() => ID)
@@ -23,13 +29,13 @@ export class User {
   @Property({ required: true, unique: true })
   email: string;
 
-  // @Field(() => Int)
-  // @Property({ required: false })
-  // age: number;
+  @Field(() => Int, { nullable: true })
+  @Property({ required: false })
+  age: number;
 
-  // @Field()
-  // @Property({ required: false })
-  // liftingType: string;
+  @Field({ nullable: true })
+  @Property({ required: false })
+  liftingType: LiftingType;
 
   @Property({ required: true })
   password: string;
