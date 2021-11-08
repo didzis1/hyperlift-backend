@@ -1,13 +1,13 @@
 import mongoose from 'mongoose';
-import { testConnection } from '../../test-utils/testConnection';
-import RoutineModel from '../../models/routine';
-import UserModel from '../../models/user';
-import { graphQLCall } from '../../test-utils/graphQLCall';
+import { testConnection } from '../test-utils/testConnection';
+import RoutineModel from '../models/routine';
+import UserModel from '../models/user';
+import { graphQLCall } from '../test-utils/graphQLCall';
 import {
   createUserAndRoutine,
   dummyRoutineData
-} from '../../test-utils/createUserAndRoutine';
-import { getRoutines } from '../../test-utils/queries/getRoutines';
+} from '../test-utils/createUserAndRoutine';
+import { getRoutines } from '../test-utils/queries/getRoutines';
 
 beforeAll(async () => {
   await testConnection();

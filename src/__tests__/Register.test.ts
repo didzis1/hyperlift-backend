@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
-import { graphQLCall } from '../../test-utils/graphQLCall';
-import { testConnection } from '../../test-utils/testConnection';
+import { graphQLCall } from '../test-utils/graphQLCall';
+import { testConnection } from '../test-utils/testConnection';
 import faker from 'faker';
-import UserModel from '../../models/user';
-import { register } from '../../test-utils/mutations/register';
+import UserModel from '../models/user';
+import { register } from '../test-utils/mutations/register';
 
 beforeAll(async () => {
   await testConnection();

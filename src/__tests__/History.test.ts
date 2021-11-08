@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
-import { graphQLCall } from '../../test-utils/graphQLCall';
-import { testConnection } from '../../test-utils/testConnection';
-import { createUserAndRoutine } from '../../test-utils/createUserAndRoutine';
-import { addHistory } from '../../test-utils/mutations/addHistory';
+import { graphQLCall } from '../test-utils/graphQLCall';
+import { testConnection } from '../test-utils/testConnection';
+import { createUserAndRoutine } from '../test-utils/createUserAndRoutine';
+import { addHistory } from '../test-utils/mutations/addHistory';
 
 beforeAll(async () => {
   await testConnection();

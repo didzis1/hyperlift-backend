@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
-import { graphQLCall } from '../../test-utils/graphQLCall';
-import { testConnection } from '../../test-utils/testConnection';
+import { graphQLCall } from '../test-utils/graphQLCall';
+import { testConnection } from '../test-utils/testConnection';
 import faker from 'faker';
-import UserModel from '../../models/user';
+import UserModel from '../models/user';
 import jwt from 'jsonwebtoken';
 import bcryptjs from 'bcryptjs';
-import { JWT_SECRET_KEY } from '../../utils/config';
-import { login } from '../../test-utils/mutations/login';
+import { JWT_SECRET_KEY } from '../utils/config';
+import { login } from '../test-utils/mutations/login';
 
 beforeAll(async () => {
   await testConnection();

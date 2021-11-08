@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
-import { testConnection } from '../../test-utils/testConnection';
-import UserModel from '../../models/user';
+import { testConnection } from '../test-utils/testConnection';
+import UserModel from '../models/user';
 import faker from 'faker';
-import { graphQLCall } from '../../test-utils/graphQLCall';
-import { addMaxLift } from '../../test-utils/mutations/addMaxLift';
-import { editMaxLift } from '../../test-utils/mutations/editMaxLift';
-import { deleteMaxLift } from '../../test-utils/mutations/deleteMaxLift';
+import { graphQLCall } from '../test-utils/graphQLCall';
+import { addMaxLift } from '../test-utils/mutations/addMaxLift';
+import { editMaxLift } from '../test-utils/mutations/editMaxLift';
+import { deleteMaxLift } from '../test-utils/mutations/deleteMaxLift';
 
 beforeAll(async () => {
   await testConnection();
