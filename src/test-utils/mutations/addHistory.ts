@@ -12,6 +12,7 @@ export const addHistory = `
 					weight
 				}
 			}
+			notes
 			createdAt
 		}
 	}
