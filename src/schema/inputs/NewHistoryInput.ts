@@ -29,4 +29,7 @@ export class NewHistoryInput {
 
   @Field(() => [NewExerciseSetsInput])
   exercises: NewExerciseSetsInput[];
+
+  @Field({ nullable: true })
+  notes?: string;
 }

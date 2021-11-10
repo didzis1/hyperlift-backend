@@ -44,6 +44,10 @@ export class History {
   @Property({ type: () => [ExerciseSets], required: true })
   exercises: ExerciseSets[];
 
+  @Field({ nullable: true })
+  @Property({ required: false })
+  notes?: string;
+
   @Field(() => Date)
   @Property()
   createdAt: Date;
