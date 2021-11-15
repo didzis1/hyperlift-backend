@@ -33,13 +33,20 @@ export class Exercise {
   @Property({ required: true })
   exerciseName: string;
 
+  @Field(() => [SetsData])
+  @Property({ type: () => [SetsData], required: true })
+  setsData: SetsData[];
+}
+
+@ObjectType()
+export class SetsData {
   @Field(() => Int)
   @Property({ required: true })
   reps: number;
 
   @Field(() => Int)
   @Property({ required: true })
-  sets: number;
+  set: number;
 
   @Field(() => Int, { nullable: true })
   @Property({ required: false })
