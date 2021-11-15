@@ -7,13 +7,13 @@ export class ExerciseSets {
   @Property({ required: true })
   exerciseName: string;
 
-  @Field(() => [SetsData])
-  @Property({ type: () => [SetsData], required: true })
-  setsData: SetsData[];
+  @Field(() => [HistorySets])
+  @Property({ type: () => [HistorySets], required: true })
+  historySets: HistorySets[];
 }
 
 @ObjectType()
-export class SetsData {
+export class HistorySets {
   @Field(() => Int)
   @Property({ required: true })
   set: number;
