@@ -1,7 +1,7 @@
 import { InputType, Field, Int } from 'type-graphql';
 
 @InputType()
-export class NewSetsData {
+export class NewHistorySetsInput {
   @Field(() => Int)
   reps: number;
 
@@ -16,8 +16,8 @@ export class NewExerciseSetsInput {
   @Field()
   exerciseName: string;
 
-  @Field(() => [NewSetsData])
-  setsData: NewSetsData[];
+  @Field(() => [NewHistorySetsInput])
+  historySets: NewHistorySetsInput[];
 }
 @InputType()
 export class NewHistoryInput {

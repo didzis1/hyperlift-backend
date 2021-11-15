@@ -17,7 +17,7 @@ export class EditExerciseSetsInput {
   exerciseName: string;
 
   @Field(() => [EditSetsData])
-  setsData: EditSetsData[];
+  historySets: EditSetsData[];
 }
 
 @InputType()

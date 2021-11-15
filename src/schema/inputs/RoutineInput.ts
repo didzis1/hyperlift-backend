@@ -23,11 +23,17 @@ export class NewExerciseInput {
   @Field()
   exerciseName: string;
 
+  @Field(() => [NewSetsDataInput])
+  setsData: NewSetsDataInput[];
+}
+
+@InputType()
+export class NewSetsDataInput {
   @Field(() => Int)
   reps: number;
 
   @Field(() => Int)
-  sets: number;
+  set: number;
 
   @Field(() => Int, { nullable: true })
   weight?: number;
