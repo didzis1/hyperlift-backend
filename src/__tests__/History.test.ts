@@ -17,7 +17,7 @@ const newHistory = {
   exercises: [
     {
       exerciseName: 'Bench Press',
-      setsData: [
+      historySets: [
         {
           reps: 10,
           set: 1,
