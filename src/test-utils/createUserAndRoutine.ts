@@ -38,56 +38,140 @@ export const createUserAndRoutine = async () => {
 
 export const dummyRoutineData = {
   routineData: {
-    description: 'Push Pull Legs',
+    description: 'Push Pull Legs workout',
     workouts: [
       {
-        name: 'Push day',
+        name: 'Push A',
         exercises: [
           {
             exerciseName: 'Bench Press',
-            reps: 5,
-            sets: 3,
-            weight: 65
+            setsData: [
+              {
+                set: 1,
+                reps: 5,
+                weight: 50
+              },
+              {
+                set: 2,
+                reps: 6,
+                weight: 50
+              },
+              {
+                set: 3,
+                reps: 5,
+                weight: 50
+              }
+            ]
           },
           {
             exerciseName: 'OHP',
-            reps: 5,
-            sets: 3,
-            weight: 45
+            setsData: [
+              {
+                set: 1,
+                reps: 5,
+                weight: 60
+              },
+              {
+                set: 2,
+                reps: 6,
+                weight: 50
+              },
+              {
+                set: 3,
+                reps: 5,
+                weight: 50
+              }
+            ]
           }
         ]
       },
       {
-        name: 'Pull day',
+        name: 'Pull A',
         exercises: [
           {
             exerciseName: 'Deadlift',
-            reps: 5,
-            sets: 3,
-            weight: 100
+            setsData: [
+              {
+                set: 1,
+                reps: 5,
+                weight: 150
+              },
+              {
+                set: 2,
+                reps: 6,
+                weight: 50
+              },
+              {
+                set: 3,
+                reps: 5,
+                weight: 50
+              }
+            ]
           },
           {
-            exerciseName: 'Bend over rows',
-            reps: 5,
-            sets: 3,
-            weight: 70
+            exerciseName: 'Barbell row',
+            setsData: [
+              {
+                set: 1,
+                reps: 5,
+                weight: 60
+              },
+              {
+                set: 2,
+                reps: 6,
+                weight: 50
+              },
+              {
+                set: 3,
+                reps: 5,
+                weight: 50
+              }
+            ]
           }
         ]
       },
       {
-        name: 'Leg day',
+        name: 'Legs A',
         exercises: [
           {
             exerciseName: 'Squat',
-            reps: 5,
-            sets: 3,
-            weight: 100
+            setsData: [
+              {
+                set: 1,
+                reps: 5,
+                weight: 50
+              },
+              {
+                set: 2,
+                reps: 6,
+                weight: 50
+              },
+              {
+                set: 3,
+                reps: 5,
+                weight: 50
+              }
+            ]
           },
           {
-            exerciseName: 'Leg curls',
-            reps: 10,
-            sets: 3,
-            weight: 40
+            exerciseName: 'Leg press',
+            setsData: [
+              {
+                set: 1,
+                reps: 5,
+                weight: 60
+              },
+              {
+                set: 2,
+                reps: 6,
+                weight: 50
+              },
+              {
+                set: 3,
+                reps: 5,
+                weight: 50
+              }
+            ]
           }
         ]
       }

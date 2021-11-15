@@ -7,9 +7,11 @@ export const getRoutines = `
 				name
 				exercises {
 					exerciseName
-					reps
-					sets
-					weight
+					setsData {
+						reps
+						set
+						weight
+					}
 				}
 			}
 		}
