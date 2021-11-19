@@ -1,4 +1,4 @@
-import { InputType, Field, Int } from 'type-graphql';
+import { InputType, Field, Int, Float } from 'type-graphql';
 
 @InputType()
 export class NewHistorySetsInput {
@@ -8,7 +8,7 @@ export class NewHistorySetsInput {
   @Field(() => Int)
   set: number;
 
-  @Field(() => Int)
+  @Field(() => Float)
   weight: number;
 }
 @InputType()

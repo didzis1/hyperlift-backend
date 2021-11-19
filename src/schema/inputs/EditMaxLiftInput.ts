@@ -1,4 +1,4 @@
-import { Field, InputType, Int } from 'type-graphql';
+import { Field, InputType, Float } from 'type-graphql';
 
 @InputType()
 export class EditMaxLiftInput {
@@ -8,6 +8,6 @@ export class EditMaxLiftInput {
   @Field()
   exercise: string;
 
-  @Field(() => Int)
+  @Field(() => Float)
   weight: number;
 }

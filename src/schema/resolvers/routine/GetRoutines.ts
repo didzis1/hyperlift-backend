@@ -3,7 +3,7 @@ import { Routine } from '../../../models/routine';
 import { MyContext } from '../../../types/MyContext';
 import UserModel from '../../../models/user';
 
-@Resolver()
+@Resolver(Routine)
 export class GetRoutinesResolver {
   @Query(() => [Routine])
   async getRoutines(@Ctx() ctx: MyContext): Promise<Routine[] | []> {

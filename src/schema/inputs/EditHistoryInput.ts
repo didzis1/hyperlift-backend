@@ -1,4 +1,4 @@
-import { Field, InputType, Int } from 'type-graphql';
+import { Field, Float, InputType, Int } from 'type-graphql';
 
 @InputType()
 export class EditSetsData {
@@ -8,7 +8,7 @@ export class EditSetsData {
   @Field(() => Int)
   set: number;
 
-  @Field(() => Int, { nullable: true })
+  @Field(() => Float, { nullable: true })
   weight?: number;
 }
 @InputType()

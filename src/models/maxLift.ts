@@ -1,4 +1,4 @@
-import { ObjectType, Field, Int } from 'type-graphql';
+import { ObjectType, Field, Float } from 'type-graphql';
 import { prop as Property } from '@typegoose/typegoose';
 
 @ObjectType()
@@ -11,7 +11,7 @@ export class MaxLift {
   @Property({ required: true })
   exercise: string;
 
-  @Field(() => Int)
+  @Field(() => Float)
   @Property({ required: true })
   weight: number;
 }

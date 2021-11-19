@@ -1,5 +1,5 @@
 import { prop as Property, getModelForClass } from '@typegoose/typegoose';
-import { Field, ObjectType, Int } from 'type-graphql';
+import { Field, ObjectType, Int, Float } from 'type-graphql';
 
 @ObjectType()
 export class Routine {
@@ -14,6 +14,11 @@ export class Routine {
   @Field(() => [WorkoutSplit])
   @Property({ type: () => [WorkoutSplit], default: [] })
   workouts: WorkoutSplit[];
+
+  // @Field(() => Int)
+  // get workoutAmount(): number {
+  //   return this.workouts.length;
+  // }
 }
 
 @ObjectType()
@@ -48,7 +53,7 @@ export class SetsData {
   @Property({ required: true })
   set: number;
 
-  @Field(() => Int, { nullable: true })
+  @Field(() => Float, { nullable: true })
   @Property({ required: false })
   weight?: number;
 }

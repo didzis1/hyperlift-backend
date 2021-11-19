@@ -1,4 +1,4 @@
-import { Field, ObjectType, Int } from 'type-graphql';
+import { Field, ObjectType, Int, Float } from 'type-graphql';
 import { prop as Property } from '@typegoose/typegoose';
 
 @ObjectType()
@@ -22,7 +22,7 @@ export class HistorySets {
   @Property({ required: true })
   reps: number;
 
-  @Field(() => Int, { nullable: true })
+  @Field(() => Float, { nullable: true })
   @Property({ required: false })
   weight?: number;
 }

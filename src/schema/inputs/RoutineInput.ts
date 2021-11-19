@@ -1,4 +1,4 @@
-import { InputType, Field, Int } from 'type-graphql';
+import { InputType, Field, Int, Float } from 'type-graphql';
 
 @InputType()
 export class NewRoutineInput {
@@ -35,6 +35,6 @@ export class NewSetsDataInput {
   @Field(() => Int)
   set: number;
 
-  @Field(() => Int, { nullable: true })
+  @Field(() => Float, { nullable: true })
   weight?: number;
 }
