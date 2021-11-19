@@ -110,4 +110,25 @@ describe('MaxLift', () => {
 
     expect(response!.data!.deleteMaxLift).toBeFalsy();
   });
+
+  it('User cannot add wrongly inputted weight (string, boolean, etc.)', async () => {
+    const currentUser = await UserModel.findOne({ email: userInfo.email });
+
+    const newMaxLift = {
+      maxLiftData: {
+        exercise: 'Bench Press',
+        weight: 'this is should be of type float, not string'
+      }
+    };
+
+    const response = await graphQLCall({
+      source: addMaxLift,
+      variableValues: newMaxLift,
+      currentUser
+    });
+
+    expect(response!.errors![0].message).toContain(
+      'Float cannot represent non numeric value'
+    );
+  });
 });
