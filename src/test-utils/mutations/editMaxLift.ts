@@ -1,9 +1,13 @@
 export const editMaxLift = `
-	mutation Mutation($maxLiftData: EditMaxLiftInput!) {
+	mutation EditMaxLift($maxLiftData: EditMaxLiftInput!) {
 		editMaxLift(maxLiftData: $maxLiftData) {
 			id
 			exercise
 			weight
+			weightHistory {
+				weight
+				date
+			}
 		}
 	}
 `;

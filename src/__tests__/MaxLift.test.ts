@@ -57,8 +57,8 @@ describe('MaxLift', () => {
     const updatedMaxLift = {
       maxLiftData: {
         id: maxLift!.id,
-        exercise: maxLift!.exercise,
-        weight: 90
+        weight: 110,
+        date: 'Mon Nov 29 2021 16:09:48 GMT+0200 (Eastern European Standard Time)'
       }
     };
 
@@ -68,13 +68,21 @@ describe('MaxLift', () => {
       currentUser
     });
 
-    expect(response!.data!.editMaxLift).toMatchObject(
-      updatedMaxLift.maxLiftData
-    );
+    expect(response!.data!.editMaxLift).toMatchObject({
+      id: updatedMaxLift.maxLiftData.id,
+      exercise: maxLift?.exercise,
+      weight: updatedMaxLift.maxLiftData.weight,
+      weightHistory: [
+        {
+          weight: updatedMaxLift.maxLiftData.weight,
+          date: '2021-11-29T14:09:48.000Z'
+        }
+      ]
+    });
 
     const updatedUser = await UserModel.findOne({ email: userInfo.email });
     // Check that weight got updated in the database
-    expect(updatedUser!.maxLifts[0].weight).toBe(90);
+    expect(updatedUser!.maxLifts[0].weight).toBe(110);
   });
 
   it('User can delete max lift', async () => {

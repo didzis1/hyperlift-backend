@@ -45,7 +45,7 @@ describe('RoutineResolver', () => {
       source: getRoutines,
       currentUser
     });
-
+    console.log(allRoutines);
     expect(allRoutines!.data!.getRoutines).toHaveLength(1);
   });
 });
