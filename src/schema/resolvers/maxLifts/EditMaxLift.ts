@@ -19,8 +19,28 @@ export class EditMaxLiftResolver {
 
     if (!user) throw new Error('User not found');
 
+    const oldMaxLift = user.maxLifts.find(
+      (maxLift) => maxLift.id === maxLiftData.id
+    );
+
+    if (!oldMaxLift) throw new Error('Max lift was not found');
+
+    console.log('Old', oldMaxLift);
+
+    const updatedMaxLift: MaxLift = {
+      id: oldMaxLift.id,
+      exercise: oldMaxLift.exercise,
+      weight: maxLiftData.weight,
+      weightHistory: oldMaxLift.weightHistory?.concat({
+        weight: maxLiftData.weight,
+        date: maxLiftData.date
+      })
+    };
+
+    console.log('Updated', updatedMaxLift);
+
     user.maxLifts = user.maxLifts.map((maxLift) =>
-      maxLift.id === maxLiftData.id ? maxLiftData : maxLift
+      maxLift.id === maxLiftData.id ? updatedMaxLift : maxLift
     );
 
     try {
@@ -29,6 +49,6 @@ export class EditMaxLiftResolver {
       throw new Error('An error occured while trying to save a new max lift');
     }
 
-    return maxLiftData;
+    return updatedMaxLift;
   }
 }

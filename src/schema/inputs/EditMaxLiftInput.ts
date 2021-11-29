@@ -5,9 +5,9 @@ export class EditMaxLiftInput {
   @Field()
   id: string;
 
-  @Field()
-  exercise: string;
-
   @Field(() => Float)
   weight: number;
+
+  @Field(() => Date)
+  date: Date;
 }
