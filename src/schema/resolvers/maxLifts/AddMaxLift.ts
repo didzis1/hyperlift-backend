@@ -20,9 +20,16 @@ export class AddMaxLiftResolver {
 
     if (!user) throw new Error('User not found');
 
-    const newMaxLift = {
+    const newMaxLift: MaxLift = {
       id: uuidv4(),
-      ...maxLiftData
+      ...maxLiftData,
+      // Initialize weightHistory with set weight and add current date
+      weightHistory: [
+        {
+          date: new Date(),
+          weight: maxLiftData.weight
+        }
+      ]
     };
 
     user.maxLifts.push(newMaxLift);
