@@ -1,7 +1,7 @@
 import { prop as Property, getModelForClass } from '@typegoose/typegoose';
 import { ObjectId } from 'mongoose';
 import { Field, ObjectType, ID, Int } from 'type-graphql';
-import { IsEmail } from 'class-validator';
+import { IsEmail, Max, Min } from 'class-validator';
 import { MaxLift } from './maxLift';
 import { Routine } from './routine';
 import { History } from './history';
@@ -30,6 +30,8 @@ export class User {
   email: string;
 
   @Field(() => Int, { nullable: true })
+  @Min(12, { message: 'Age must be over twelve' })
+  @Max(100, { message: 'Age cannot be over 100' })
   @Property({ required: false })
   age: number;
 
