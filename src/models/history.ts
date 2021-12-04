@@ -1,5 +1,6 @@
 import { Field, ObjectType, Int, Float } from 'type-graphql';
 import { prop as Property } from '@typegoose/typegoose';
+import { Min } from 'class-validator';
 
 @ObjectType()
 export class ExerciseSets {
@@ -19,6 +20,7 @@ export class HistorySets {
   set: number;
 
   @Field(() => Int)
+  @Min(1, { message: 'At least one repetition is required' })
   @Property({ required: true })
   reps: number;
 

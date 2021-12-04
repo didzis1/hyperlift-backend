@@ -1,5 +1,6 @@
 import { ObjectType, Field, Float } from 'type-graphql';
 import { prop as Property } from '@typegoose/typegoose';
+import { Min } from 'class-validator';
 
 @ObjectType()
 export class MaxLift {
@@ -8,10 +9,11 @@ export class MaxLift {
   id: string;
 
   @Field()
-  @Property({ required: true })
+  @Property({ required: true, unique: true })
   exercise: string;
 
   @Field(() => Float)
+  @Min(1, { message: 'Weight must be over 1 kg/lb' })
   @Property({ required: true })
   weight: number;
 
@@ -23,6 +25,7 @@ export class MaxLift {
 @ObjectType()
 export class WeightHistory {
   @Field(() => Float)
+  @Min(1, { message: 'Weight must be over 1 kg/lb' })
   @Property({ required: true })
   weight: number;
 
