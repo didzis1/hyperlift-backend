@@ -6,9 +6,9 @@ import RoutineModel from '../models/routine';
 export const testConnection = async (dropDb: boolean = false) => {
   await mongoose
     .connect(MONGODB_URI as string)
-    .then(() => console.log('Connected successfully to test MongoDB'))
+    .then(() => console.log('Connected successfully to TEST MongoDB'))
     .catch((error) =>
-      console.log('Error connecting to test MongoDB', error.message)
+      console.log('Error connecting to TEST MongoDB', error.message)
     );
 
   if (dropDb) {
