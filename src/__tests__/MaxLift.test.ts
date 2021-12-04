@@ -29,7 +29,7 @@ describe('MaxLift', () => {
     // Normally user's ID is verified through token
     // Here we assume that the user is logged in
     const currentUser = await UserModel.findById(fakeUser._id);
-
+    console.log('Max lift create current user', currentUser);
     const newMaxLift = {
       maxLiftData: {
         exercise: 'Bench Press',
@@ -129,6 +129,35 @@ describe('MaxLift', () => {
 
     expect(response!.errors![0].message).toContain(
       'Float cannot represent non numeric value'
+    );
+  });
+
+  it('Creating a max lift with the same exercise name throws an error', async () => {
+    const currentUser = await UserModel.findOne({ email: userInfo.email });
+
+    const newMaxLift = {
+      maxLiftData: {
+        exercise: 'Bench Press',
+        weight: 100
+      }
+    };
+
+    const response = await graphQLCall({
+      source: addMaxLift,
+      variableValues: newMaxLift,
+      currentUser
+    });
+
+    console.log('*** FIRST RESPONSE ***', response);
+
+    const secondResponse = await graphQLCall({
+      source: addMaxLift,
+      variableValues: newMaxLift,
+      currentUser
+    });
+
+    expect(secondResponse.errors![0].message).toContain(
+      'User cannot add duplicate exercises as max lifts'
     );
   });
 });
