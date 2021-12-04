@@ -25,8 +25,6 @@ export class EditMaxLiftResolver {
 
     if (!oldMaxLift) throw new Error('Max lift was not found');
 
-    console.log('Old', oldMaxLift);
-
     const updatedMaxLift: MaxLift = {
       id: oldMaxLift.id,
       exercise: oldMaxLift.exercise,
@@ -36,8 +34,6 @@ export class EditMaxLiftResolver {
         date: maxLiftData.date
       })
     };
-
-    console.log('Updated', updatedMaxLift);
 
     user.maxLifts = user.maxLifts.map((maxLift) =>
       maxLift.id === maxLiftData.id ? updatedMaxLift : maxLift
