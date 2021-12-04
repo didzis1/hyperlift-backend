@@ -32,6 +32,12 @@ export class AddMaxLiftResolver {
       ]
     };
 
+    if (
+      user.maxLifts.find((maxLift) => maxLift.exercise === maxLiftData.exercise)
+    ) {
+      throw new Error('User cannot add duplicate exercises as max lifts');
+    }
+
     user.maxLifts.push(newMaxLift);
 
     try {
