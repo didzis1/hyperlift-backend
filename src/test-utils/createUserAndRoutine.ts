@@ -33,6 +33,8 @@ export const createUserAndRoutine = async () => {
       age: currentUser!.age
     }
   });
+
+  console.log('create routine', createdRoutine);
   return { createdRoutine, currentUser, fakeUser };
 };
 
@@ -45,43 +47,13 @@ export const dummyRoutineData = {
         exercises: [
           {
             exerciseName: 'Bench Press',
-            setsData: [
-              {
-                set: 1,
-                reps: 5,
-                weight: 50
-              },
-              {
-                set: 2,
-                reps: 6,
-                weight: 50
-              },
-              {
-                set: 3,
-                reps: 5,
-                weight: 50
-              }
-            ]
+            sets: 5,
+            reps: 3
           },
           {
             exerciseName: 'OHP',
-            setsData: [
-              {
-                set: 1,
-                reps: 5,
-                weight: 60
-              },
-              {
-                set: 2,
-                reps: 6,
-                weight: 50
-              },
-              {
-                set: 3,
-                reps: 5,
-                weight: 50
-              }
-            ]
+            sets: 5,
+            reps: 8
           }
         ]
       },
@@ -90,43 +62,13 @@ export const dummyRoutineData = {
         exercises: [
           {
             exerciseName: 'Deadlift',
-            setsData: [
-              {
-                set: 1,
-                reps: 5,
-                weight: 150
-              },
-              {
-                set: 2,
-                reps: 6,
-                weight: 50
-              },
-              {
-                set: 3,
-                reps: 5,
-                weight: 50
-              }
-            ]
+            sets: 5,
+            reps: 8
           },
           {
             exerciseName: 'Barbell row',
-            setsData: [
-              {
-                set: 1,
-                reps: 5,
-                weight: 60
-              },
-              {
-                set: 2,
-                reps: 6,
-                weight: 50
-              },
-              {
-                set: 3,
-                reps: 5,
-                weight: 50
-              }
-            ]
+            sets: 5,
+            reps: 8
           }
         ]
       },
@@ -135,43 +77,13 @@ export const dummyRoutineData = {
         exercises: [
           {
             exerciseName: 'Squat',
-            setsData: [
-              {
-                set: 1,
-                reps: 5,
-                weight: 50
-              },
-              {
-                set: 2,
-                reps: 6,
-                weight: 50
-              },
-              {
-                set: 3,
-                reps: 5,
-                weight: 50
-              }
-            ]
+            sets: 5,
+            reps: 3
           },
           {
             exerciseName: 'Leg press',
-            setsData: [
-              {
-                set: 1,
-                reps: 5,
-                weight: 60
-              },
-              {
-                set: 2,
-                reps: 6,
-                weight: 50
-              },
-              {
-                set: 3,
-                reps: 5,
-                weight: 50
-              }
-            ]
+            sets: 3,
+            reps: 10
           }
         ]
       }

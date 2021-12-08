@@ -29,7 +29,7 @@ describe('MaxLift', () => {
     // Normally user's ID is verified through token
     // Here we assume that the user is logged in
     const currentUser = await UserModel.findById(fakeUser._id);
-    console.log('Max lift create current user', currentUser);
+
     const newMaxLift = {
       maxLiftData: {
         exercise: 'Bench Press',
@@ -142,13 +142,11 @@ describe('MaxLift', () => {
       }
     };
 
-    const response = await graphQLCall({
+    await graphQLCall({
       source: addMaxLift,
       variableValues: newMaxLift,
       currentUser
     });
-
-    console.log('*** FIRST RESPONSE ***', response);
 
     const secondResponse = await graphQLCall({
       source: addMaxLift,

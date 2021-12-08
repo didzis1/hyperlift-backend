@@ -20,6 +20,7 @@ afterAll(async () => {
 describe('RoutineResolver', () => {
   it('User can create a routine', async () => {
     const { createdRoutine, fakeUser } = await createUserAndRoutine();
+    console.log(dummyRoutineData.routineData.workouts);
     expect(createdRoutine!.data!.createRoutine.workouts).toMatchObject(
       dummyRoutineData.routineData.workouts
     );
