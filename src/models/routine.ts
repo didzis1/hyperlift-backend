@@ -1,5 +1,5 @@
 import { prop as Property, getModelForClass } from '@typegoose/typegoose';
-import { Field, ObjectType, Int, Float } from 'type-graphql';
+import { Field, ObjectType, Int } from 'type-graphql';
 import { Min } from 'class-validator';
 
 @ObjectType()
@@ -39,27 +39,37 @@ export class Exercise {
   @Property({ required: true })
   exerciseName: string;
 
-  @Field(() => [SetsData])
-  @Property({ type: () => [SetsData], required: true })
-  setsData: SetsData[];
-}
-
-@ObjectType()
-export class SetsData {
   @Field(() => Int)
   @Min(1, { message: 'At least one repetition is required' })
   @Property({ required: true })
   reps: number;
 
   @Field(() => Int)
+  @Min(1, { message: 'At least one set is required' })
   @Property({ required: true })
-  set: number;
+  sets: number;
 
-  @Field(() => Float, { nullable: true })
-  @Min(1, { message: 'Weight cannot be lower than 1 kg/lb' })
-  @Property({ required: false })
-  weight?: number;
+  // @Field(() => [SetsData])
+  // @Property({ type: () => [SetsData], required: true })
+  // setsData: SetsData[];
 }
+
+// @ObjectType()
+// export class SetsData {
+//   @Field(() => Int)
+//   @Min(1, { message: 'At least one repetition is required' })
+//   @Property({ required: true })
+//   reps: number;
+
+//   @Field(() => Int)
+//   @Property({ required: true })
+//   set: number;
+
+//   @Field(() => Float, { nullable: true })
+//   @Min(1, { message: 'Weight cannot be lower than 1 kg/lb' })
+//   @Property({ required: false })
+//   weight?: number;
+// }
 
 const RoutineModel = getModelForClass(Routine);
 

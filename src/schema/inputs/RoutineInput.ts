@@ -1,4 +1,4 @@
-import { InputType, Field, Int, Float } from 'type-graphql';
+import { InputType, Field, Int } from 'type-graphql';
 
 @InputType()
 export class NewRoutineInput {
@@ -23,18 +23,23 @@ export class NewExerciseInput {
   @Field()
   exerciseName: string;
 
-  @Field(() => [NewSetsDataInput])
-  setsData: NewSetsDataInput[];
-}
-
-@InputType()
-export class NewSetsDataInput {
   @Field(() => Int)
   reps: number;
 
   @Field(() => Int)
-  set: number;
-
-  @Field(() => Float, { nullable: true })
-  weight?: number;
+  sets: number;
+  // @Field(() => [NewSetsDataInput])
+  // setsData: NewSetsDataInput[];
 }
+
+// @InputType()
+// export class NewSetsDataInput {
+//   @Field(() => Int)
+//   reps: number;
+
+//   @Field(() => Int)
+//   set: number;
+
+//   @Field(() => Float, { nullable: true })
+//   weight?: number;
+// }
