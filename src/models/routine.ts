@@ -16,10 +16,38 @@ export class Routine {
   @Property({ type: () => [WorkoutSplit], default: [] })
   workouts: WorkoutSplit[];
 
-  // @Field(() => Int)
-  // get workoutAmount(): number {
-  //   return this.workouts.length;
-  // }
+  @Field(() => Int)
+  totalSets(): number {
+    const totalSets = this.workouts.reduce((accelerator, workout) => {
+      return (
+        accelerator +
+        workout.exercises.reduce((accelerator, exercise) => {
+          return accelerator + exercise.sets;
+        }, 0)
+      );
+    }, 0);
+
+    return totalSets;
+  }
+
+  @Field(() => Int)
+  totalReps(): number {
+    const totalReps = this.workouts.reduce((accelerator, workout) => {
+      return (
+        accelerator +
+        workout.exercises.reduce((accelerator, exercise) => {
+          return accelerator + exercise.reps;
+        }, 0)
+      );
+    }, 0);
+
+    return totalReps;
+  }
+
+  @Field(() => Int)
+  totalSplits(): number {
+    return this.workouts.length;
+  }
 }
 
 @ObjectType()
