@@ -8,9 +8,9 @@ export class Routine {
   @Property()
   id: string;
 
-  @Field({ nullable: true })
-  @Property({ required: false })
-  description?: string;
+  @Field()
+  @Property({ required: true })
+  description: string;
 
   @Field(() => [WorkoutSplit])
   @Property({ type: () => [WorkoutSplit], default: [] })

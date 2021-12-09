@@ -2,8 +2,8 @@ import { InputType, Field, Int } from 'type-graphql';
 
 @InputType()
 export class NewRoutineInput {
-  @Field({ nullable: true })
-  description?: string;
+  @Field()
+  description: string;
 
   @Field(() => [NewWorkoutSplitInput])
   workouts: NewWorkoutSplitInput[];
