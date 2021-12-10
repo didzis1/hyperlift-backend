@@ -14,7 +14,7 @@ enum LiftingType {
 @ObjectType()
 export class User {
   @Field(() => ID)
-  id: ObjectId;
+  readonly _id: ObjectId;
 
   @Field()
   @Property({ required: true })
