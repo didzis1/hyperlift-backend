@@ -1,10 +1,12 @@
 export const me = `
-	{
+	query Query {
 		me {
-			id
+			_id
 			firstName
 			lastName
+			age
 			email
+			liftingType
 		}
 	}
 `;
