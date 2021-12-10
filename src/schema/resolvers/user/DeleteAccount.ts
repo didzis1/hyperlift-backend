@@ -10,7 +10,7 @@ export class DeleteAccountResolver {
       return false;
     }
 
-    const userToDelete = await UserModel.findById(ctx.currentUser.id);
+    const userToDelete = await UserModel.findById(ctx.currentUser._id);
 
     if (!userToDelete) {
       throw new Error('User could not been found');

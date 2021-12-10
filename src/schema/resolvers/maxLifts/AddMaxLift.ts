@@ -16,7 +16,7 @@ export class AddMaxLiftResolver {
       throw new Error('You must be authorized to add a new max lift');
     }
 
-    const user = await UserModel.findById(ctx.currentUser.id);
+    const user = await UserModel.findById(ctx.currentUser._id);
 
     if (!user) throw new Error('User not found');
 

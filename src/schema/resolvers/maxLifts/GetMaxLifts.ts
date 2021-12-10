@@ -10,7 +10,7 @@ export class GetMaxLiftsResolver {
     if (!ctx.currentUser) {
       throw new Error('You must be authorized');
     }
-    const user = await UserModel.findById(ctx.currentUser.id).populate(
+    const user = await UserModel.findById(ctx.currentUser._id).populate(
       'routines'
     );
 
