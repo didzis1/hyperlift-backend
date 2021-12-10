@@ -24,7 +24,7 @@ export class RegisterResolver {
     try {
       savedUser = await user.save();
     } catch (error) {
-      throw new Error('E-mail is already in use');
+      throw new Error('Something went wrong while trying to register');
     }
 
     return savedUser;
