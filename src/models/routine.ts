@@ -1,12 +1,12 @@
 import { prop as Property, getModelForClass } from '@typegoose/typegoose';
-import { Field, ObjectType, Int } from 'type-graphql';
+import { Field, ObjectType, Int, ID } from 'type-graphql';
 import { Min } from 'class-validator';
+import { ObjectId } from 'mongoose';
 
 @ObjectType()
 export class Routine {
-  @Field()
-  @Property()
-  id: string;
+  @Field(() => ID)
+  readonly _id: ObjectId;
 
   @Field()
   @Property({ required: true })
