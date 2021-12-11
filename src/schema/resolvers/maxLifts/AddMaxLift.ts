@@ -2,7 +2,7 @@ import { MyContext } from '../../../types/MyContext';
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
 import { MaxLift } from '../../../models/maxLift';
 import UserModel from '../../../models/user';
-import { NewMaxLiftInput } from '../../inputs/NewMaxLiftInput';
+import { NewMaxLiftInput } from '../../inputs/MaxLiftInput';
 import { v4 as uuidv4 } from 'uuid';
 
 @Resolver()
