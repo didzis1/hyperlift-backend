@@ -1,4 +1,4 @@
-import { EditHistoryInput } from '../../inputs/EditHistoryInput';
+import { EditHistoryInput } from '../../inputs/HistoryInput';
 import UserModel from '../../../models/user';
 import { MyContext } from '../../../types/MyContext';
 import { History } from '../../../models/history';

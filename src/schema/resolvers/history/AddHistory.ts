@@ -1,6 +1,6 @@
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
 import { History } from '../../../models/history';
-import { NewHistoryInput } from '../../inputs/NewHistoryInput';
+import { NewHistoryInput } from '../../inputs/HistoryInput';
 import { MyContext } from '../../../types/MyContext';
 import UserModel from '../../../models/user';
 import { v4 as uuidv4 } from 'uuid';
