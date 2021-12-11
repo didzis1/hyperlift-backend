@@ -1,5 +1,5 @@
 import { MaxLift } from '../../../models/maxLift';
-import { EditMaxLiftInput } from '../../inputs/EditMaxLiftInput';
+import { EditMaxLiftInput } from '../../inputs/MaxLiftInput';
 import UserModel from '../../../models/user';
 import { MyContext } from '../../../types/MyContext';
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';

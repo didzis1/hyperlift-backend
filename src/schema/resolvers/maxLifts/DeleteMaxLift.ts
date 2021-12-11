@@ -1,4 +1,4 @@
-import { RemoveMaxLiftInput } from '../../inputs/RemoveMaxLiftInput';
+import { RemoveMaxLiftInput } from '../../inputs/MaxLiftInput';
 import UserModel from '../../../models/user';
 import { MyContext } from '../../../types/MyContext';
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
