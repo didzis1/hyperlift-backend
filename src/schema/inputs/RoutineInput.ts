@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongoose';
 import { InputType, Field, Int } from 'type-graphql';
 
 @InputType()
@@ -28,18 +29,10 @@ export class NewExerciseInput {
 
   @Field(() => Int)
   sets: number;
-  // @Field(() => [NewSetsDataInput])
-  // setsData: NewSetsDataInput[];
 }
 
-// @InputType()
-// export class NewSetsDataInput {
-//   @Field(() => Int)
-//   reps: number;
-
-//   @Field(() => Int)
-//   set: number;
-
-//   @Field(() => Float, { nullable: true })
-//   weight?: number;
-// }
+@InputType()
+export class EditRoutineInput extends NewRoutineInput {
+  @Field()
+  _id: ObjectId;
+}
