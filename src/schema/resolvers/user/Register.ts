@@ -13,6 +13,10 @@ export class RegisterResolver {
     const salt = bcryptjs.genSaltSync(12);
     const hashedPassword = bcryptjs.hashSync(password, salt);
 
+    const existingUser = await UserModel.findOne({ email });
+
+    if (existingUser) throw new Error('E-mail is already in use');
+
     const user = new UserModel({
       firstName,
       lastName,
