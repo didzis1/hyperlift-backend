@@ -8,7 +8,7 @@ export class GetRoutinesResolver {
   @Query(() => [Routine])
   async getRoutines(@Ctx() ctx: MyContext): Promise<Routine[] | []> {
     if (!ctx.currentUser) {
-      throw new Error('You must be authorized');
+      throw new Error('You must be authorized to view routines');
     }
     const user = await UserModel.findById(ctx.currentUser._id).populate(
       'routines'
