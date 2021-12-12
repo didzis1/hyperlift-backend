@@ -1,7 +1,7 @@
 export const getRoutines = `
 	query Query {
 		getRoutines {
-			id
+			_id
 			description
 			workouts {
 				name

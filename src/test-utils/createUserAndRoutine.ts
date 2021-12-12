@@ -22,7 +22,7 @@ export const createUserAndRoutine = async () => {
     source: createRoutine,
     variableValues: dummyRoutineData,
     currentUser: {
-      id: currentUser!._id,
+      _id: currentUser!._id,
       email: currentUser!.email,
       firstName: currentUser!.firstName,
       lastName: currentUser!.lastName,

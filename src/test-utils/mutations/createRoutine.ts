@@ -1,7 +1,7 @@
 export const createRoutine = `
 	mutation CreateRoutine($routineData: NewRoutineInput!) {
 		createRoutine(routineData: $routineData) {
-			id
+			_id
 			description
 			workouts {
 				name
