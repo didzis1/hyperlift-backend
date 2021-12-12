@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongoose';
-import { InputType, Field, Int } from 'type-graphql';
+import { InputType, Field, Int, ID } from 'type-graphql';
 
 @InputType()
 export class NewRoutineInput {
@@ -33,6 +33,12 @@ export class NewExerciseInput {
 
 @InputType()
 export class EditRoutineInput extends NewRoutineInput {
-  @Field()
+  @Field(() => ID)
+  _id: ObjectId;
+}
+
+@InputType()
+export class DeleteRoutineInput {
+  @Field(() => ID)
   _id: ObjectId;
 }
