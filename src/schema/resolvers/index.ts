@@ -5,8 +5,10 @@ import { MeResolver } from './user/Me';
 import { DeleteAccountResolver } from './user/DeleteAccount';
 
 // Routine
-import { CreateRoutineResolver } from './routine/CreateRoutine';
 import { GetRoutinesResolver } from './routine/GetRoutines';
+import { CreateRoutineResolver } from './routine/CreateRoutine';
+import { EditRoutineResolver } from './routine/EditRoutine';
+import { DeleteRoutineResolver } from './routine/DeleteRoutine';
 
 // History workouts
 import { AddHistoryResolver } from './history/AddHistory';
@@ -25,6 +27,8 @@ export const resolvers = [
   DeleteAccountResolver,
   CreateRoutineResolver,
   GetRoutinesResolver,
+  EditRoutineResolver,
+  DeleteRoutineResolver,
   AddHistoryResolver,
   EditHistoryResolver,
   AddMaxLiftResolver,
