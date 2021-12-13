@@ -7,7 +7,9 @@ export class DeleteAccountResolver {
   @Mutation(() => Boolean)
   async deleteAccount(@Ctx() ctx: MyContext): Promise<Boolean> {
     if (!ctx.currentUser) {
-      return false;
+      throw new Error(
+        'You must be logged in to be able to delete your account'
+      );
     }
 
     const userToDelete = await UserModel.findById(ctx.currentUser._id);
