@@ -19,7 +19,7 @@ export class EditRoutineResolver {
     if (!oldRoutine) throw new Error('Routine was not found');
 
     try {
-      await oldRoutine.update({
+      await oldRoutine.updateOne({
         description: routineData.description,
         workouts: routineData.workouts
       });
