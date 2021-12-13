@@ -1,7 +1,31 @@
 import { Field, Float, InputType, Int } from 'type-graphql';
 
 @InputType()
-export class EditSetsData {
+export class NewHistoryInput {
+  @Field()
+  routineId: string;
+
+  @Field()
+  splitName: string;
+
+  @Field(() => [ExerciseInput])
+  exercises: ExerciseInput[];
+
+  @Field({ nullable: true })
+  notes?: string;
+}
+
+@InputType()
+export class ExerciseInput {
+  @Field()
+  exerciseName: string;
+
+  @Field(() => [VolumeSetsInput])
+  volumeSets: VolumeSetsInput[];
+}
+
+@InputType()
+export class VolumeSetsInput {
   @Field(() => Int)
   reps: number;
 
@@ -10,14 +34,6 @@ export class EditSetsData {
 
   @Field(() => Float, { nullable: true })
   weight?: number;
-}
-@InputType()
-export class EditExerciseSetsInput {
-  @Field()
-  exerciseName: string;
-
-  @Field(() => [EditSetsData])
-  historySets: EditSetsData[];
 }
 
 @InputType()
@@ -28,45 +44,30 @@ export class EditHistoryInput {
   @Field()
   splitName: string;
 
-  @Field(() => [EditExerciseSetsInput])
-  exercises: EditExerciseSetsInput[];
+  @Field(() => [EditExerciseInput])
+  exercises: EditExerciseInput[];
 
   @Field({ nullable: true })
   notes?: string;
 }
 
 @InputType()
-export class NewHistorySetsInput {
+export class EditExerciseInput {
+  @Field()
+  exerciseName: string;
+
+  @Field(() => [EditVolumeSetsInput])
+  volumeSets: EditVolumeSetsInput[];
+}
+
+@InputType()
+export class EditVolumeSetsInput {
   @Field(() => Int)
   reps: number;
 
   @Field(() => Int)
   set: number;
 
-  @Field(() => Float)
-  weight: number;
-}
-
-@InputType()
-export class NewExerciseSetsInput {
-  @Field()
-  exerciseName: string;
-
-  @Field(() => [NewHistorySetsInput])
-  historySets: NewHistorySetsInput[];
-}
-
-@InputType()
-export class NewHistoryInput {
-  @Field()
-  routineId: string;
-
-  @Field()
-  splitName: string;
-
-  @Field(() => [NewExerciseSetsInput])
-  exercises: NewExerciseSetsInput[];
-
-  @Field({ nullable: true })
-  notes?: string;
+  @Field(() => Float, { nullable: true })
+  weight?: number;
 }
