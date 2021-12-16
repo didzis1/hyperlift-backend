@@ -18,7 +18,7 @@ export class Routine {
 
   @Field(() => Int)
   totalSets(): number {
-    const totalSets = this.workouts.reduce((accelerator, workout) => {
+    return this.workouts.reduce((accelerator, workout) => {
       return (
         accelerator +
         workout.exercises.reduce((accelerator, exercise) => {
@@ -26,13 +26,11 @@ export class Routine {
         }, 0)
       );
     }, 0);
-
-    return totalSets;
   }
 
   @Field(() => Int)
   totalReps(): number {
-    const totalReps = this.workouts.reduce((accelerator, workout) => {
+    return this.workouts.reduce((accelerator, workout) => {
       return (
         accelerator +
         workout.exercises.reduce((accelerator, exercise) => {
@@ -40,8 +38,6 @@ export class Routine {
         }, 0)
       );
     }, 0);
-
-    return totalReps;
   }
 
   @Field(() => Int)
@@ -76,28 +72,7 @@ export class Exercise {
   @Min(1, { message: 'At least one set is required' })
   @Property({ required: true })
   sets: number;
-
-  // @Field(() => [SetsData])
-  // @Property({ type: () => [SetsData], required: true })
-  // setsData: SetsData[];
 }
-
-// @ObjectType()
-// export class SetsData {
-//   @Field(() => Int)
-//   @Min(1, { message: 'At least one repetition is required' })
-//   @Property({ required: true })
-//   reps: number;
-
-//   @Field(() => Int)
-//   @Property({ required: true })
-//   set: number;
-
-//   @Field(() => Float, { nullable: true })
-//   @Min(1, { message: 'Weight cannot be lower than 1 kg/lb' })
-//   @Property({ required: false })
-//   weight?: number;
-// }
 
 const RoutineModel = getModelForClass(Routine);
 
