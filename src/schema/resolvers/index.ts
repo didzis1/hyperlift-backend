@@ -11,6 +11,7 @@ import { EditRoutineResolver } from './routine/EditRoutine';
 import { DeleteRoutineResolver } from './routine/DeleteRoutine';
 
 // History workouts
+import { GetHistoryResolver } from './history/GetHistory';
 import { AddHistoryResolver } from './history/AddHistory';
 import { EditHistoryResolver } from './history/EditHistory';
 
@@ -29,6 +30,7 @@ export const resolvers = [
   GetRoutinesResolver,
   EditRoutineResolver,
   DeleteRoutineResolver,
+  GetHistoryResolver,
   AddHistoryResolver,
   EditHistoryResolver,
   AddMaxLiftResolver,
