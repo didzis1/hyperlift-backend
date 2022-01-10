@@ -49,4 +49,10 @@ describe('RoutineResolver', () => {
     console.log(allRoutines);
     expect(allRoutines!.data!.getRoutines).toHaveLength(1);
   });
+
+  it('User can delete a routine', async () => {
+    const { createdRoutine, currentUser } = await createUserAndRoutine();
+    console.log('Routine created:', createdRoutine);
+    console.log('Current user created:', currentUser);
+  });
 });
