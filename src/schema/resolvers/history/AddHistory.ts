@@ -24,6 +24,7 @@ export class AddHistoryResolver {
       routineId: historyData.routineId,
       splitName: historyData.splitName,
       exercises: historyData.exercises,
+      notes: historyData.notes,
       createdAt: new Date()
     };
 
