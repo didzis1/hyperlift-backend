@@ -17,7 +17,7 @@ const newHistory = {
   exercises: [
     {
       exerciseName: 'Bench Press',
-      historySets: [
+      volumeSets: [
         {
           reps: 10,
           set: 1,
@@ -41,7 +41,7 @@ describe('HistoryResolver', () => {
       source: addHistory,
       variableValues: {
         historyData: {
-          routineId: createdRoutine!.data!.createRoutine.id,
+          routineId: createdRoutine!.data!.createRoutine._id,
           ...newHistory
         }
       },
