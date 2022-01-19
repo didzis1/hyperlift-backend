@@ -32,11 +32,11 @@ export class User {
   @Field(() => Int, { nullable: true })
   @Min(12, { message: 'Age must be over twelve' })
   @Max(100, { message: 'Age cannot be over 100' })
-  @Property({ required: false })
+  @Property({ required: false, default: null })
   age: number;
 
   @Field({ nullable: true })
-  @Property({ required: false })
+  @Property({ required: false, default: null })
   liftingType: LiftingType;
 
   @Property({ required: true })
