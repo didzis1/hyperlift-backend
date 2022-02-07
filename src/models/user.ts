@@ -5,12 +5,8 @@ import { IsEmail, Max, Min } from 'class-validator';
 import { MaxLift } from './maxLift';
 import { Routine } from './routine';
 import { History } from './history';
+import { LiftingType } from '../types/LiftingType';
 
-enum LiftingType {
-  Olympic = 'Olympic Weightlifting',
-  Bodybuilding = 'Bodybuilding',
-  Powerlifting = 'Powerlifting'
-}
 @ObjectType()
 export class User {
   @Field(() => ID)
