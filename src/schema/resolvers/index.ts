@@ -3,6 +3,7 @@ import { RegisterResolver } from './user/Register';
 import { LoginResolver } from './user/Login';
 import { MeResolver } from './user/Me';
 import { DeleteAccountResolver } from './user/DeleteAccount';
+import { UpdateUserResolver } from './user/UpdateUser';
 
 // Routine
 import { GetRoutinesResolver } from './routine/GetRoutines';
@@ -26,6 +27,7 @@ export const resolvers = [
   LoginResolver,
   MeResolver,
   DeleteAccountResolver,
+  UpdateUserResolver,
   CreateRoutineResolver,
   GetRoutinesResolver,
   EditRoutineResolver,
