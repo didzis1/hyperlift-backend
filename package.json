@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "16.14.0"
+  },
   "scripts": {
+    "tsc": "tsc",
     "start:prod": "node dist/index.js",
     "dev": "cross-env NODE_ENV=dev ts-node-dev --respawn --no-notify src/index.ts",
     "db:setup": "cross-env NODE_ENV=test ts-node ./src/test-utils/setup.ts",
